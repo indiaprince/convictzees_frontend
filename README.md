@@ -3,3 +3,7 @@
 
 
 # NFT Marketplace
+
+
+
+## React + Typescript + Next + Tailwind + Vercel + BlockChain Network
