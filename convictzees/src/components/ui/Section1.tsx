@@ -14,12 +14,12 @@ const Section1 =() => {
                 <Title first="P" rest="ick up your Convictzees"/>
                 <Explanation 
                     body1 = "Help your Convictzees to break out the prison"
-                    body2 = "Convictzees are the world first stable NFTs which retain its value permentantly"/>
-                <Button title="MINT" width="189px" height="79px" fontSize="48px"></Button>
+                    body2 = "And become the convict yourself!"
+                    body3 = "Your Convictzee will pay you a tribute every week"
+                    body4 = ""/>
+                <Button title="MINT" width="189px" height="79px" fontSize="48px" fontFamily="Impact"></Button>
             </TextSection>
-            <ImageSection>
-                <Step1/>
-            </ImageSection>
+            <Step1/>
         </Section>
     );
 }
@@ -27,17 +27,13 @@ const Section1 =() => {
 export default Section1;
 
 
-const ImageSection = styled.div`
-`;
 const TextSection = styled.div`
-    width : 1100px;
-    
-
+    width : 1150px;
 `;
 const Section = styled.div`
     position : absolute;
     display: inline-flex;
-    top: 35%; 
+    top: 38%; 
     justify-content: center;
     align-items: center;
     margin-left : 5%;

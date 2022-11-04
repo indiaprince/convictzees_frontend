@@ -18,13 +18,18 @@ const Title =(props : ITitle) => {
 export default Title;
 
 const TitleP = styled.p`
+    font-family : Impact;
     font-size: 96px; 
     margin : 0;
-
+    margin-bottom : 3%;
+    letter-spacing: 0.06em;
+    display : inline-flex;
 `;
+
 const TitleSpan1 = styled.span`
     color: #ff8a00;
 `;
+
 const TitleSpan2 = styled.span`
     color: #fff;
 `;

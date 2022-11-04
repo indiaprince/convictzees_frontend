@@ -5,7 +5,7 @@ import Button from "../ui/Button";
 const Header =() => {
     return(
         <NavBar>
-                <StyledButton><Button  title="Convictzees" width="336px" height="73px" fontSize="55px"/></StyledButton>
+                <StyledButton><Button  title="Convictzees" width="336px" height="73px" fontSize="55px" fontFamily="IrishGrover-Regular, cursive"/></StyledButton>
                 <NavLink>
                 <Link>EXPLORE</Link>
                 <Link>MARKETPLACE</Link>
@@ -24,15 +24,13 @@ const Header =() => {
 export default Header
 
 const StyledButton = styled.div`
-    margin-left: 5%;
+    margin-left: 10%;
     margin-right : 15%;
 `;
 
 const NavBar = styled.nav`
     top: 1%;
-    display: flex;
     position: absolute; 
-    width:100%;
     display: inline-flex;
     align-items: center;
   `;
@@ -46,6 +44,7 @@ const NavLink = styled.div`
 const Link = styled.p`
     lex-grow: 0; 
     flex-shrink: 0; 
+    font-family : Imprima;
     font-size: 37px; 
     text-align: left; 
     text-transform: uppercase; 
@@ -63,7 +62,7 @@ const ConnectButton = styled.button`
     width: 263px;
     height: 60px;
     padding-left: 1.0%; 
-    padding-right: 3%; 
+    padding-right: 1.0%; 
     padding-top: 0.5%; 
     padding-bottom: 3%;
 
@@ -74,22 +73,18 @@ const ConnectButton = styled.button`
 `;
 
 const ConnectButtonText = styled.p`
-    display : flex;
-    flex-grow: 0; 
-    flex-shrink: 0; 
-    text-align: center; 
+    width : 263px;
+    height: 60px;
 
-
-    width : 233px;
-    height: 40px;
-
+    font-family : Impact;
     font-style: normal;
     font-weight: 400;
-    font-size: 25px;
+    font-size: 31px;
     line-height: 40px;
     text-transform: uppercase;
-    margin:0;
+    text-align: center; 
 
+    margin:0;
     color: #FFFFFF;
 
 `;

@@ -20,7 +20,7 @@ export default RoadMap;
 
 const RoadMapSection = styled.div`
     position : absolute;
-    top: 75%; 
+    top: 85%; 
     left : 50%;
     transform: translate(-50%, -50%);
     justify-content: center;
@@ -32,5 +32,6 @@ const RoadMapHeader = styled.div`
     justify-content: center;
     align-items: center;
     margin-bottom : 150px;
+    margin-left : 10%;
     gap : 50px;
 `;
