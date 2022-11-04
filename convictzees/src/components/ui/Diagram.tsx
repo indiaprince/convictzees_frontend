@@ -12,19 +12,27 @@ const Diagram =() => {
                 <ExchangeIcon/>
                 <NFTIcon/>
             </SectionRow>
-            <Button title="FIND OUT MORE" width="376px" height="79px" fontSize="48px"/>
+            <Center>
+                <Button title="FIND OUT MORE" width="376px" height="79px" fontSize="48px" fontFamily="Impact"/>
+
+            </Center>
         </SectionCol>
     );
 }
 
 export default Diagram
 
+const Center = styled.div`
+    display : flex;
+    justify-content : center;
+`;
 
 const SectionCol = styled.div`
     position : absolute;
     top: 30%; 
     left: 50%;
     transform: translate(-50%, -50%);
+
 `;
 
 const SectionRow = styled.div`

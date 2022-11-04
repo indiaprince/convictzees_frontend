@@ -5,12 +5,13 @@ interface IButton {
     width : string;
     height : string;
     fontSize : string;
+    fontFamily : string;
 }
 
 const Button =(props : IButton) => {
     return (
     <TopLogo style={{width : props.width, height : props.height}}>
-        <LogoText style ={{fontSize:props.fontSize}}>
+        <LogoText style ={{fontSize:props.fontSize, fontFamily:props.fontFamily}}>
             {props.title}
         </LogoText>
     </TopLogo>        
@@ -20,16 +21,17 @@ const Button =(props : IButton) => {
 export default Button;
 
 const LogoText = styled.p`
-    padding-top : 10px;
-    display : center;
-    flex-grow: 0; 
-    flex-shrink: 0; 
-    text-align: center; 
-    margin : 0;
-    margin-top:2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-block-start : 0;
+    margin-block-end : 0;
+    height:100%;
     color: #fff;
 `;
 const TopLogo = styled.div`
     border-radius: 20px;
     background: #ff8a00;
+    padding : 0;
+    margin:0;
 `;
