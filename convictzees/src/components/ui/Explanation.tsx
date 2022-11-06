@@ -31,6 +31,22 @@ const ExplanationP = styled.p`
     font-size: 40px; 
     color: #fff;
 
+    @media screen and (max-width: 1824px) {
+        font-size: 36px;
+    }
+    @media screen and (max-width: 1600px) {
+        font-size: 32px;
+    }
+    @media screen and (max-width: 1440px) {
+        font-size: 28px;
+    }
+    @media screen and (max-width: 1280px) {
+        font-size: 24px;
+    }
+    @media screen and (max-width: 1024px) {
+        font-size: 20px;
+    }
+
 `;
 const ExplanationSpan = styled.span`
 `;

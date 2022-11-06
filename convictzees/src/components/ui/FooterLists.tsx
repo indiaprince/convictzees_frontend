@@ -28,7 +28,28 @@ const Section = styled.div`
     color: #FFFFFF;
     margin-left: 30%;
     margin-right: 30%;
-    height : 300px;
+    height : 100%;
+    justify-content : space-between;
+    @media screen and (max-width: 1824px) {
+        margin-left: 30%;
+        margin-right: 30%;
+    }
+    @media screen and (max-width: 1600px) {
+        margin-left: 26%;
+        margin-right: 26%;
+    }
+    @media screen and (max-width: 1440px) {
+        margin-left: 24%;
+        margin-right: 24%;
+    }
+    @media screen and (max-width: 1280px) {
+        margin-left: 18%;
+        margin-right: 18%;
+    }
+    @media screen and (max-width: 1024px) {
+        margin-left: 15%;
+        margin-right: 15%;
+    }
 `;
 
 const Part = styled.p`
@@ -36,18 +57,20 @@ const Part = styled.p`
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
-    line-height: 20px;
-    margin-bottom : 25px;
 
+    margin-bottom : 45px;
 
 `;
 
 const Heading = styled.p`
-    margin-bottom : 40px;
+    height : 40px;
+    margin : 0;
+    margin-bottom : 10%;
     font-family: Exo;
     font-style: normal;
     font-weight: 700;
     font-size: 30px;
     line-height: 22px;
+
 
 `;

@@ -3,15 +3,17 @@ import Facebook from "../customicons/Facebook";
 import In from "../customicons/In";
 import Instagram from "../customicons/Instagram";
 import Twitter from "../customicons/Twitter";
-import Button from "../ui/Button";
 import FooterLists from "../ui/FooterLists";
+import TopButton from "../ui/TopButton";
 
 
 const Footer =() => {
     return(
         <Section>
             <ButtonSection>
-                <Button title={"Convictzees"} width={"336px"} height={"73px"} fontSize={"55px"} fontFamily={"IrishGrover-regular, cursive"}/>
+                <StyledButton>
+                    <TopButton title={"Convictzees"} fontFamily={"IrishGrover-regular, cursive"}/>
+                </StyledButton>
                 <Contacts>
                     <Facebook/>
                     <In/>
@@ -31,14 +33,15 @@ const Footer =() => {
 
 export default Footer
 
+const StyledButton = styled.div`
+    font-size :  55px;
+`;
 const Text = styled.div`
-
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
     font-size: 17.961px;
     line-height: 22px;
-
     color: #FFFFFF;
 
 `;
@@ -46,23 +49,57 @@ const Text = styled.div`
 const Contacts = styled.div`
     display : flex;
     gap : 3%;
-    margin-top : 8%;
-    margin-bottom : 20%;
+    margin-top : 9%;
+    margin-bottom : 30%;
 `;
 
 const ButtonSection = styled.div`
-
+    @media screen and (max-width: 1824px) {
+        width : 20%;
+    }
+    @media screen and (max-width: 1600px) {
+        width : 17%;
+    }
+    @media screen and (max-width: 1440px) {
+        width : 15%;
+    }
+    @media screen and (max-width: 1280px) {
+        width : 13%;
+    }
+    @media screen and (max-width: 1024px) {
+        width : 11%;
+    }
 `;
 
 const Section = styled.div`
     position : absolute;
     width : 100%;
     display : flex;
-    top: 94%; 
-    margin-left : 4%;
+    top: 92%; 
+    padding-left : 4%;
+
+
+
 
 `;
 const ListSection = styled.div`
-    display : flex;
+    display : inline-flex;
     margin-left : 15%;
+
+    @media screen and (max-width: 1824px) {
+        margin-left : 8%;
+    }
+    @media screen and (max-width: 1600px) {
+        margin-left : 5%;
+    }
+    @media screen and (max-width: 1440px) {
+        margin-left : 1%;
+    }
+    @media screen and (max-width: 1280px) {
+        margin-left : 1%;
+    }
+    @media screen and (max-width: 1024px) {
+        margin-left : 1%;
+    }
+
 `;

@@ -10,28 +10,39 @@ const RoadMap =() => {
                 <Title first="R" rest="oadMap"/>
                 <RoadMapIcon/>
             </RoadMapHeader>
-            <RoadMapImg/>
+            <StyledMap/>
         </RoadMapSection>
     );
 }
 
 export default RoadMap;
 
+const StyledMap = styled(RoadMapImg)`
+    margin-bottom : 2%;
+    width : 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
+
+`;
 const RoadMapSection = styled.div`
+    width : 90%;
     position : absolute;
-    top: 85%; 
+    top: 83%; 
     left : 50%;
     transform: translate(-50%, -50%);
     justify-content: center;
     align-items: center;
+
+
+
 `;
 
 const RoadMapHeader = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom : 150px;
-    margin-left : 10%;
-    gap : 50px;
+    margin-bottom : 4%;
+    gap : 40px;
 `;

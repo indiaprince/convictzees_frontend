@@ -17,9 +17,11 @@ const Section1 =() => {
                     body2 = "And become the convict yourself!"
                     body3 = "Your Convictzee will pay you a tribute every week"
                     body4 = ""/>
-                <Button title="MINT" width="189px" height="79px" fontSize="48px" fontFamily="Impact"></Button>
-            </TextSection>
-            <Step1/>
+                <StyledButton>
+                    <Button title="MINT" fontFamily="Impact"></Button>
+                </StyledButton>
+                </TextSection>
+            <ImageSection/>
         </Section>
     );
 }
@@ -27,16 +29,33 @@ const Section1 =() => {
 export default Section1;
 
 
+const StyledButton = styled.div`
+    margin-top : 8%;
+    font-size :  48px;
+
+`;
+
+const ImageSection = styled(Step1)`
+    display : flex;
+    margin-right : 6%;
+    width : 40%;
+`;
+
 const TextSection = styled.div`
-    width : 1150px;
+
+    width : 60%;
 `;
 const Section = styled.div`
+    width : 100%;
     position : absolute;
     display: inline-flex;
-    top: 38%; 
+    top: 44%; 
     justify-content: center;
     align-items: center;
-    margin-left : 5%;
+    padding-left:5%;
+
+
+
 
 `;
 

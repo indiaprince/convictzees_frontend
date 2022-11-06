@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Background from "../customicons/Bg"
 import Footer from "../footer/Footer";
 import Header from "../header/Header";
 import About from "../ui/About";
@@ -9,13 +8,15 @@ import Diagram from "../ui/Diagram";
 import RoadMap from "../ui/RoadMap";
 import Section1 from "../ui/Section1";
 import Section2 from "../ui/Section2";
-import Title from "../ui/Title";
+
+  
+  
 const Layout = (props : {children: React.ReactNode}) => {
     return (
             <ImageContainer>
                 <Background/>
                 <Header/>
-                <Center/>
+                <StyledCenter/>
                 <About/>
                 <Diagram/>
                 <Section1/>
@@ -30,22 +31,48 @@ const Layout = (props : {children: React.ReactNode}) => {
 }
 
 export default Layout
-const Space = styled.div`
-    width : 30px;
+
+const Background = styled.div`
+    position : absolute;
+    background-image: url(${"/Background.svg"});
+    background-size: cover;
+
+    background-position:center center;    
+    height: 100%;
+    width: 100%;
+    text-align: center;
+
 `;
-const ImageContainer = styled.div`
-    position : relative;
-    
-    overflow : auto;
+const StyledCenter = styled(Center)`
 `;
 
-const TextSection = styled.div`
-    position : absolute;
-    display : inline-flex;
-    top:68%;
-    left : 50%;
-    transform: translate(-50%, -50%);
-`;
-const Text = styled.div`
-    
+
+const ImageContainer = styled.div`
+
+    width: 100%;
+    position: relative;
+    min-height: 650vh;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    @media screen and (max-width: 1824px) {
+        min-height: 650vh;
+    }
+    @media screen and (max-width: 1600px) {
+        min-height: 600vh;
+    }
+    @media screen and (max-width: 1440px) {
+        min-height: 550vh;
+    }
+    @media screen and (max-width: 1280px) {
+        min-height: 500vh;
+    }
+    @media screen and (max-width: 1024px) {
+        min-height: 480vh;
+    }
+
+
     `;
