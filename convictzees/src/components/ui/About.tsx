@@ -22,10 +22,14 @@ export default About
 
 const AboutSection = styled.div`
     position : absolute;
-    top: 19%; 
+    top: 23%; 
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 1701px; 
+    width: 100%; 
     height: 220px; 
     text-align : center;
+
+
+
+
 `;

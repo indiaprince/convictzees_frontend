@@ -21,9 +21,24 @@ const TitleP = styled.p`
     font-family : Impact;
     font-size: 96px; 
     margin : 0;
-    margin-bottom : 3%;
     letter-spacing: 0.06em;
     display : inline-flex;
+
+    @media screen and (max-width: 1824px) {
+        font-size: 72px;
+    }
+    @media screen and (max-width: 1600px) {
+        font-size: 62px;
+    }
+    @media screen and (max-width: 1440px) {
+        font-size: 52px;
+    }
+    @media screen and (max-width: 1280px) {
+        font-size: 42px;
+    }
+    @media screen and (max-width: 1024px) {
+        font-size: 32px;
+    }
 `;
 
 const TitleSpan1 = styled.span`

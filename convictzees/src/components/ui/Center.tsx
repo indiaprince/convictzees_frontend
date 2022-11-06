@@ -16,21 +16,38 @@ export default Center
 
 const StyledCenter = styled(CenterLogo)`
     position : absolute;
-    top: 10%; 
-    left : 55%;
+    top: 12%; 
+
+
+
+    left : 53%;
     transform: translate(-50%, -50%);
+    width : 92%;
 `;
 
 const CenterTitle = styled.p`
     position : absolute;
-    width: 1090px; 
+
+    width: 100%; 
     height: 375px; 
+
     font-family : IrishGrover-Regular, cursive;
-    font-size: 200px; 
     text-align: center; 
-    font-weight: 600;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 200px;
+    line-height: 242px;
+
     color: #ff8a00;
-    top: 6%; 
+    top: 9%; 
     left: 50%;
     transform: translate(-50%, -50%);
+
+    @media screen and (max-width: 1280px) {
+        font-size: 160px;
+    }
+    @media screen and (max-width: 1024px) {
+        font-size: 120px;
+    }
+    
 `;

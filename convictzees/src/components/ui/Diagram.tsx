@@ -2,7 +2,7 @@ import CoinIcon from "../customicons/CoinIcon";
 import ExchangeIcon from "../customicons/ExchangeIcon";
 import NFTIcon from "../customicons/NFTIcon";
 import styled from "styled-components";
-import Button from "./Button";
+import DiagramButton from "./DiagramButton";
 
 const Diagram =() => {
     return(
@@ -13,8 +13,7 @@ const Diagram =() => {
                 <NFTIcon/>
             </SectionRow>
             <Center>
-                <Button title="FIND OUT MORE" width="376px" height="79px" fontSize="48px" fontFamily="Impact"/>
-
+                <DiagramButton title="FIND OUT MORE" fontFamily="Impact"/>
             </Center>
         </SectionCol>
     );
@@ -25,20 +24,41 @@ export default Diagram
 const Center = styled.div`
     display : flex;
     justify-content : center;
+    margin-top : 1%;    
+
 `;
 
 const SectionCol = styled.div`
+    width : 100%;
     position : absolute;
-    top: 30%; 
+    top: 33%; 
     left: 50%;
     transform: translate(-50%, -50%);
 
+
+    @media screen and (max-width: 1824px) {
+        width : 80%;
+    }
+    @media screen and (max-width: 1600px) {
+        width : 75%;
+    }
+    @media screen and (max-width: 1440px) {
+        width : 70%;
+    }
+    @media screen and (max-width: 1280px) {
+        width : 65%;
+    }
+    @media screen and (max-width: 1024px) {
+        width : 60%;
+    }
 `;
 
 const SectionRow = styled.div`
+    width : 100%;
     display : inline-flex;
-    align-item : center;
+    align-items : center;
     justify-content : center;
-    gap : 15%;
+    margin-top: 7%;
+    gap: 6%;
     
 `;

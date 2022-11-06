@@ -19,7 +19,9 @@ const Section2 =() => {
                     body2 = "Then take your Convictzees back in jail"
                     body3 = "And receive the bounty on his head!"
                     body4 = ""/>
-                <Button title="REDEEM" width="189px" height="79px" fontSize="48px" fontFamily="Impact"></Button>
+                <StyledButton>
+                    <Button title="REDEEM" width="239px" height="79px" fontFamily="Impact"></Button>
+                </StyledButton>
             </TextSection>
         </Section>
     );
@@ -27,20 +29,25 @@ const Section2 =() => {
 
 export default Section2;
 
-
+const StyledButton = styled.div`
+    margin-top : 9%;
+    font-size :  48px;
+`;
 const ImageSection = styled.div`
+    width : 30%;
 `;
 const TextSection = styled.div`
-    width : 1150px;
-    margin-left : 5%;
-
+    padding-left: 5%;
+    width : 70%;
+    padding-right : 5%;
 `;
 const Section = styled.div`
+    width : 100%;
     position : absolute;
     display: flex;
-    top: 53%; 
+    top: 60%; 
     justify-content: center;
-    align-items: start;
-    gap : 100px;
-    margin-left : 5%;
+    align-items: center;
+    padding-left : 5%;
+
 `;
