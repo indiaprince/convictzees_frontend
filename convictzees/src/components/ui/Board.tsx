@@ -1,5 +1,5 @@
-import HorizontalLine from "@components/customicons/HorizontalLine";
-import VerticalLine from "@components/customicons/VerticalLine";
+import HorizontalLine from "../customicons/HorizontalLine";
+import VerticalLine from "../customicons/VerticalLine";
 import React from "react";
 import styled from "styled-components";
 

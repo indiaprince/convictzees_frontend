@@ -6,34 +6,64 @@ import { injected, walletconnect } from "../../connectors/connectors";
 
 import { useEffect, useState } from "react";
 import { getErrorMessage } from "../../helper/getErrorMessage";
+import { switchChains } from "../../helper/walletHelpers";
 
 const Header =() => {
-    const { activate, error } = useWeb3React();
-    
+    const {account, active, activate, deactivate } = useWeb3React();
+    const accountFormatted = account?.substring(0, 6) + "..."
+
     const onClickConnect = () => {
         console.log(injected);
         activate(injected, async (error:Error) => {
             console.log(getErrorMessage(error));
+            switchChains();
         })
     }
-    return(
-        <NavBar>
+    const onClickDisconnect = () => {
+        deactivate();
+    }
+
+    if(active) {
+        return(
+            <NavBar>
                 <StyledButton>
                     <TopButton  title="Convictzees"  fontFamily="IrishGrover-Regular, cursive"/>
                 </StyledButton>
                 <NavLink>
-                <Link>EXPLORE</Link>
-                <Link>MARKETPLACE</Link>
-                <Link>REDEEM</Link>
-                <FirstDisplay><Link>ROADMAP</Link></FirstDisplay>
-                <ConnectButton onClick={onClickConnect}>
-                        <ConnectButtonText>
-                            CONNECT WALLET
-                        </ConnectButtonText>
-                </ConnectButton>
-            </NavLink>
-        </NavBar>
-    );
+                    <Link>EXPLORE</Link>
+                    <Link>MARKETPLACE</Link>
+                    <Link>REDEEM</Link>
+                    <FirstDisplay><Link>ROADMAP</Link></FirstDisplay>
+                    <ConnectButton onClick={onClickDisconnect}>
+                    <ConnectButtonText>
+                        {accountFormatted}
+                    </ConnectButtonText>
+            </ConnectButton>  
+                </NavLink>
+            </NavBar>
+            );
+    }
+    else
+    {
+        return (
+            <NavBar>
+            <StyledButton>
+                <TopButton  title="Convictzees"  fontFamily="IrishGrover-Regular, cursive"/>
+            </StyledButton>
+            <NavLink>
+            <Link>EXPLORE</Link>
+            <Link>MARKETPLACE</Link>
+            <Link>REDEEM</Link>
+            <FirstDisplay><Link>ROADMAP</Link></FirstDisplay>
+            <ConnectButton onClick={onClickConnect}>
+                    <ConnectButtonText>
+                        CONNECT WALLET
+                    </ConnectButtonText>
+            </ConnectButton>
+        </NavLink>
+    </NavBar>  
+        );
+    }
 }
 
 export default Header
