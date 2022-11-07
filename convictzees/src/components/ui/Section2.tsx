@@ -42,7 +42,6 @@ const TextSection = styled.div`
     padding-right : 5%;
 `;
 const Section = styled.div`
-    width : 100%;
     position : absolute;
     display: flex;
     top: 60%; 

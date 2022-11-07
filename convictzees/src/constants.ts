@@ -34,7 +34,7 @@ export const chains: IChain = {
       name: "tMATIC", 
       symbol: "tMATIC", 
       decimals: 18 },
-    blockExplorerUrls: ["https://mumbai.polygonscan.com/"],
+    blockExplorerUrls: ["https://mumbai.polygonscan.com"],
   },
   1: {
     chainId: "0x1",

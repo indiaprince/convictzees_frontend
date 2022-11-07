@@ -40,8 +40,6 @@ const ImageContainer = styled.div`
 
     width: 100%;
     position: relative;
-    box-sizing: border-box;
-    display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
