@@ -20,7 +20,7 @@ const Section2 =() => {
                     body3 = "And receive the bounty on his head!"
                     body4 = ""/>
                 <StyledButton>
-                    <Button title="REDEEM" width="239px" height="79px" fontFamily="Impact"></Button>
+                    <Button title="REDEEM" fontFamily="Impact"></Button>
                 </StyledButton>
             </TextSection>
         </Section>
@@ -38,7 +38,7 @@ const ImageSection = styled.div`
 `;
 const TextSection = styled.div`
     padding-left: 5%;
-    width : 70%;
+    width : 65%;
     padding-right : 5%;
 `;
 const Section = styled.div`

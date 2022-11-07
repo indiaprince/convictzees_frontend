@@ -8,15 +8,14 @@ import Diagram from "../ui/Diagram";
 import RoadMap from "../ui/RoadMap";
 import Section1 from "../ui/Section1";
 import Section2 from "../ui/Section2";
-
   
   
 const Layout = (props : {children: React.ReactNode}) => {
     return (
             <ImageContainer>
                 <Background/>
+                <Center/>
                 <Header/>
-                <StyledCenter/>
                 <About/>
                 <Diagram/>
                 <Section1/>
@@ -43,9 +42,6 @@ const Background = styled.div`
     text-align: center;
 
 `;
-const StyledCenter = styled(Center)`
-`;
-
 
 const ImageContainer = styled.div`
 
