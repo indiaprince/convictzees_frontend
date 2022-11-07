@@ -4,7 +4,6 @@ import TopButton from "../ui/TopButton";
 import { useWeb3React } from "@web3-react/core";
 import { injected, walletconnect } from "../../connectors/connectors";
 
-import { useEffect, useState } from "react";
 import { getErrorMessage } from "../../helper/getErrorMessage";
 import { switchChains } from "../../helper/walletHelpers";
 
