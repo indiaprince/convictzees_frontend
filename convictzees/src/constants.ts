@@ -24,9 +24,17 @@ export const chains: IChain = {
       symbol: "MATIC",
       decimals: 18,
     },
-    blockExplorerUrls: [
-      " https://polygonscan.com",
-    ],
+    blockExplorerUrls: ["https://polygonscan.com"],
+  },
+  80001: {
+    chainId: "0x13881",
+    chainName: "Matic(Polygon) Mumbai Testnet",
+    rpcUrls: ["https://rpc-mumbai.maticvigil.com"],
+    nativeCurrency: { 
+      name: "tMATIC", 
+      symbol: "tMATIC", 
+      decimals: 18 },
+    blockExplorerUrls: ["https://mumbai.polygonscan.com/"],
   },
   1: {
     chainId: "0x1",
