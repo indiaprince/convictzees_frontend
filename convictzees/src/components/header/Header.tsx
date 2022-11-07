@@ -1,39 +1,21 @@
 import styled from "styled-components";
 import TopButton from "../ui/TopButton";
 
+import { useWeb3React } from "@web3-react/core";
+import { injected, walletconnect } from "../../connectors/connectors";
 
 import { useEffect, useState } from "react";
+import { getErrorMessage } from "../../helper/getErrorMessage";
 
 const Header =() => {
-
-const [isMetamaskInstalled, setIsMetamaskInstalled] = useState<boolean>(false);
- const [ethereumAccount, setEthereumAccount] = useState<string | null>(null);
- 
- useEffect(() => {
-   if((window as any).ethereum){
-     //check if Metamask wallet is installed
-     setIsMetamaskInstalled(true);
-   }
- },[]);
-
- async function connectMetamaskWallet(): Promise<void> {
-    //to get around type checking
-    (window as any).ethereum
-      .request({
-          method: "eth_requestAccounts",
-      })
-      .then((accounts : string[]) => {
-        setEthereumAccount(accounts[0]);
-      })
-      .catch((error: any) => {
-          alert(`Something went wrong: ${error}`);
-      });
-  }
- 
-
-
-
-
+    const { activate, error } = useWeb3React();
+    
+    const onClickConnect = () => {
+        console.log(injected);
+        activate(injected, async (error:Error) => {
+            console.log(getErrorMessage(error));
+        })
+    }
     return(
         <NavBar>
                 <StyledButton>
@@ -44,7 +26,7 @@ const [isMetamaskInstalled, setIsMetamaskInstalled] = useState<boolean>(false);
                 <Link>MARKETPLACE</Link>
                 <Link>REDEEM</Link>
                 <FirstDisplay><Link>ROADMAP</Link></FirstDisplay>
-                <ConnectButton onClick={connectMetamaskWallet}>
+                <ConnectButton onClick={onClickConnect}>
                         <ConnectButtonText>
                             CONNECT WALLET
                         </ConnectButtonText>

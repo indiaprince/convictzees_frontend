@@ -24,8 +24,6 @@ export default Diagram
 const Center = styled.div`
     display : flex;
     justify-content : center;
-    margin-top : 1%;    
-
 `;
 
 const SectionCol = styled.div`
@@ -58,7 +56,7 @@ const SectionRow = styled.div`
     display : inline-flex;
     align-items : center;
     justify-content : center;
-    margin-top: 7%;
+    margin-top: 8%;
     gap: 6%;
     
 `;
