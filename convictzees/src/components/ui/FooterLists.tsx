@@ -31,24 +31,24 @@ const Section = styled.div`
     height : 100%;
     justify-content : space-between;
     @media screen and (max-width: 1824px) {
-        margin-left: 30%;
-        margin-right: 30%;
+        margin-left: 32%;
+        margin-right: 32%;
     }
     @media screen and (max-width: 1600px) {
-        margin-left: 26%;
-        margin-right: 26%;
+        margin-left: 34%;
+        margin-right: 34%;
     }
     @media screen and (max-width: 1440px) {
-        margin-left: 24%;
-        margin-right: 24%;
+        margin-left: 38%;
+        margin-right: 38%;
     }
     @media screen and (max-width: 1280px) {
-        margin-left: 18%;
-        margin-right: 18%;
+        margin-left: 36%;
+        margin-right: 28%;
     }
     @media screen and (max-width: 1024px) {
-        margin-left: 15%;
-        margin-right: 15%;
+        margin-left: 34%;
+        margin-right: 24%;
     }
 `;
 
@@ -59,7 +59,27 @@ const Part = styled.p`
     font-size: 16px;
 
     margin-bottom : 45px;
+    @media screen and (max-width: 1824px) {
+        font-size: 16px;
+    }
+    @media screen and (max-width: 1600px) {
+        font-size: 16px;
 
+    }
+    @media screen and (max-width: 1440px) {
+        font-size: 16px;
+
+    }
+    @media screen and (max-width: 1280px) {
+        font-size: 14px;
+        margin-bottom : 25px;
+
+    }
+    @media screen and (max-width: 1024px) {
+        font-size: 14px;
+        margin-bottom : 25px;
+
+    }
 `;
 
 const Heading = styled.p`
@@ -71,6 +91,24 @@ const Heading = styled.p`
     font-weight: 700;
     font-size: 30px;
     line-height: 22px;
+    @media screen and (max-width: 1824px) {
+        font-size: 30px;
+    }
+    @media screen and (max-width: 1600px) {
+        font-size: 26px;
 
+    }
+    @media screen and (max-width: 1440px) {
+        font-size: 24px;
+
+    }
+    @media screen and (max-width: 1280px) {
+        font-size: 22px;
+
+    }
+    @media screen and (max-width: 1024px) {
+        font-size: 20px;
+
+    }
 
 `;

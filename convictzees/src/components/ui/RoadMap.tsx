@@ -6,17 +6,24 @@ import RoadMapImg from "../customicons/RoadMapImg";
 const RoadMap =() => {
     return (
         <RoadMapSection>
-            <RoadMapHeader>
+            <Header>
                 <Title first="R" rest="oadMap"/>
-                <RoadMapIcon/>
-            </RoadMapHeader>
+                <RoadMapHeader>
+                        <RoadMapIcon/>
+                </RoadMapHeader>
+            </Header>
             <StyledMap/>
         </RoadMapSection>
     );
 }
 
 export default RoadMap;
-
+const Header = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap : 40px;
+`;
 const StyledMap = styled(RoadMapImg)`
     margin-bottom : 2%;
     width : 100%;
@@ -29,20 +36,35 @@ const StyledMap = styled(RoadMapImg)`
 const RoadMapSection = styled.div`
     width : 90%;
     position : absolute;
-    top: 83%; 
+    top: 81%; 
     left : 50%;
     transform: translate(-50%, -50%);
     justify-content: center;
     align-items: center;
 
-
+    @media screen and (max-width: 1280px) {
+        top: 84%; 
+    }
+    @media screen and (max-width: 1024px) {
+        top: 84%; 
+    }
 
 `;
 
 const RoadMapHeader = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom : 4%;
-    gap : 40px;
+    @media screen and (max-width: 1824px) {
+        width : 12%;
+    }
+    @media screen and (max-width: 1600px) {
+        width : 12%;
+    }
+    @media screen and (max-width: 1440px) {
+        width : 12%;
+    }
+    @media screen and (max-width: 1280px) {
+        width : 12%;
+    }
+    @media screen and (max-width: 1024px) {
+        width : 10%;
+    }
 `;

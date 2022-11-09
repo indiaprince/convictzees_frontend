@@ -89,8 +89,9 @@ const StyledButton = styled.div`
         width : 13%;
     }
     @media screen and (max-width: 1024px) {
-        width : 11%;
+        width : 13%;
     }
+    
 `;
 
 const NavBar = styled.nav`
@@ -109,6 +110,9 @@ const NavLink = styled.div`
     align-items: center;
     margin-left : 10.3%;
     width : 100%;
+    @media screen and (max-width: 1024px) {
+        margin-left : 20%;
+    }
     
 `;
 const Link = styled.p`
@@ -142,6 +146,7 @@ const Link = styled.p`
     @media screen and (max-width: 1024px) {
         font-size: 22px;
     }
+
 `;
 
 const ConnectButton = styled.button`

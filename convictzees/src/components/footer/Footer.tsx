@@ -35,6 +35,7 @@ export default Footer
 
 const StyledButton = styled.div`
     font-size :  55px;
+    
 `;
 const Text = styled.div`
     font-family: 'Inter';
@@ -43,7 +44,25 @@ const Text = styled.div`
     font-size: 17.961px;
     line-height: 22px;
     color: #FFFFFF;
+    @media screen and (max-width: 1824px) {
+        font-size: 15px;
+    }
+    @media screen and (max-width: 1600px) {
+        font-size: 14px;
 
+    }
+    @media screen and (max-width: 1440px) {
+        font-size: 13px;
+
+    }
+    @media screen and (max-width: 1280px) {
+        font-size: 12px;
+
+    }
+    @media screen and (max-width: 1024px) {
+        font-size: 10px;
+
+    }
 `;
 
 const Contacts = styled.div`
@@ -51,6 +70,20 @@ const Contacts = styled.div`
     gap : 3%;
     margin-top : 9%;
     margin-bottom : 30%;
+    @media screen and (max-width: 1824px) {
+    }
+    @media screen and (max-width: 1600px) {
+        margin-bottom : 25%;
+    }
+    @media screen and (max-width: 1440px) {
+        margin-bottom : 25%;
+    }
+    @media screen and (max-width: 1280px) {
+        margin-bottom : 15%;
+    }
+    @media screen and (max-width: 1024px) {
+        margin-bottom : 10%;
+    }
 `;
 
 const ButtonSection = styled.div`

@@ -3,11 +3,12 @@ import styled from "styled-components";
 interface IButton {
     title : string;
     fontFamily : string;
+    onClick : ()=>void;
 }
 
 const Button =(props : IButton) => {
     return (
-    <TopLogo>
+    <TopLogo onClick={props.onClick}>
         <LogoText style ={{fontFamily:props.fontFamily}}>
             {props.title}
         </LogoText>

@@ -25,10 +25,8 @@ const LogoText = styled.p`
     margin-block-end : 0;
     height:100%;
     color: #fff;
-    &:hover {
-        color : #ff8a00;
-    }
     font-size : 55px;
+    
     @media screen and (max-width: 1824px) {
         font-size : 45px;
     }
@@ -53,12 +51,7 @@ const TopLogo = styled.button`
     margin:0;
     width : 336px;
     height : 73px;  
-    &:hover {
-        cursor: pointer;
-        background-color: #fff;
-        border-width: 5px; 
-        border-color: #ff8a00;
-    }
+
     @media screen and (max-width: 1824px) {
         width : 306px;
         height : 63px;     
@@ -76,8 +69,8 @@ const TopLogo = styled.button`
         height : 45px;  
     }
     @media screen and (max-width: 1024px) {
-        width : 139px;
-        height : 40px;  
+        width : 169px;
+        height : 45px;  
     }
 
 

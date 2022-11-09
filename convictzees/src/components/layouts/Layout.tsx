@@ -18,14 +18,11 @@ const Layout = (props : {children: React.ReactNode}) => {
                     src={background}
                     alt="Unable to Load Background"
                     layout="responsive" 
+                    objectFit="cover"
+                    background-attachment = "fixed"
+
                 />
-                <Center/>
                 <Header/>
-                <About/>
-                <Diagram/>
-                <Section1/>
-                <Section2/>
-                <RoadMap/>
                 <Footer/>
             <main>{props.children}</main>
             </ImageContainer>
@@ -37,12 +34,9 @@ const Layout = (props : {children: React.ReactNode}) => {
 export default Layout
 
 const ImageContainer = styled.div`
-
     width: 100%;
     position: relative;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
-
     `;

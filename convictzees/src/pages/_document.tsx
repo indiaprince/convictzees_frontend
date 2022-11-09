@@ -40,6 +40,8 @@ import Document, {
             <meta charSet="utf-8" />
           </Head>
           <body>
+          <div id="modal"></div>
+
             <Main />
             <NextScript />
           </body>

@@ -30,7 +30,7 @@ const ExplanationP = styled.p`
     letter-spacing: 0.06em;
     font-size: 40px; 
     color: #fff;
-
+    
     @media screen and (max-width: 1824px) {
         font-size: 36px;
     }
