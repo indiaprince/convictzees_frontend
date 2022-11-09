@@ -3,10 +3,19 @@ import Title from "../ui/Title";
 import Explanation from "../ui/Explanation";
 import Step2 from "../customicons/Step2";
 import Button from "./Button";
+import RedeemModal from "../modalComponents/redeem/RedeemModal";
+import { useState } from "react";
 
 
 
 const Section2 =() => {
+
+    const [isOpen, SetisOpen] = useState(false);
+    const openModal = () => {
+        SetisOpen(true);
+    }
+    
+    
     return (
         <Section>
             <ImageSection>
@@ -20,8 +29,10 @@ const Section2 =() => {
                     body3 = "And receive the bounty on his head!"
                     body4 = ""/>
                 <StyledButton>
-                    <Button title="REDEEM" fontFamily="Impact"></Button>
+                    <Button title="REDEEM" fontFamily="Impact" onClick={openModal}></Button>
                 </StyledButton>
+                <div>{isOpen && <RedeemModal setModalShow={SetisOpen}/>}</div>
+
             </TextSection>
         </Section>
     );
@@ -38,15 +49,15 @@ const ImageSection = styled.div`
 `;
 const TextSection = styled.div`
     padding-left: 5%;
-    width : 65%;
+    width : 60%;
     padding-right : 5%;
 `;
 const Section = styled.div`
+    width : 100%;
     position : absolute;
     display: flex;
-    top: 60%; 
+    top: 58%; 
     justify-content: center;
     align-items: center;
-    padding-left : 5%;
 
 `;

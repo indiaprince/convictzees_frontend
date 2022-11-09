@@ -1,6 +1,6 @@
 export default function CenterLogo({ ...props }) {
   return (
-    <svg { ...props } width = "inherit" height= "inherit" viewBox="0 0 1473 1151" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+    <svg { ...props } viewBox="0 0 1473 1151" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
 <rect x="65.0992" width="1409.56" height="1066.55" transform="rotate(3.49936 65.0992 0)" fill="url(#pattern1)"/>
 <defs>
 <pattern id="pattern1" patternContentUnits="objectBoundingBox" width="1" height="1"  >

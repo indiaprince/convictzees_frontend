@@ -3,13 +3,19 @@ import Title from "../ui/Title";
 import Explanation from "../ui/Explanation";
 import Step1 from "../customicons/Step1";
 import Button from "./Button";
+import { useEffect, useState } from "react";
+import MintingModal from "../modalComponents/mint/MintingModal";
 
 
 
 
 const Section1 =() => {
+    const [isOpen, SetisOpen] = useState(false);
+    const openModal = () => {
+        SetisOpen(true);
+    }
     return (
-        <Section>
+        <Section>``
             <TextSection>
                 <Title first="P" rest="ick up your Convictzees"/>
                 <Explanation 
@@ -18,8 +24,9 @@ const Section1 =() => {
                     body3 = "Your Convictzee will pay you a tribute every week"
                     body4 = ""/>
                 <StyledButton>
-                    <Button title="MINT" fontFamily="Impact"></Button>
+                    <Button title="MINT" fontFamily="Impact" onClick={openModal}></Button>
                 </StyledButton>
+                <div>{isOpen && <MintingModal setModalShow={SetisOpen}/>}</div>
                 </TextSection>
             <ImageSection/>
         </Section>
@@ -42,7 +49,6 @@ const ImageSection = styled(Step1)`
 `;
 
 const TextSection = styled.div`
-
     width : 60%;
 `;
 const Section = styled.div`

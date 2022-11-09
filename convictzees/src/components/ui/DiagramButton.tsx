@@ -55,7 +55,7 @@ const TopLogo = styled.button`
     padding : 0;
     margin:0;
     width: 35%;
-
+    
     &:hover {
         cursor: pointer;
         background-color: #fff;

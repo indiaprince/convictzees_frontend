@@ -31,13 +31,13 @@ const TitleP = styled.p`
         font-size: 62px;
     }
     @media screen and (max-width: 1440px) {
-        font-size: 52px;
+        font-size: 56px;
     }
     @media screen and (max-width: 1280px) {
-        font-size: 42px;
+        font-size: 48px;
     }
     @media screen and (max-width: 1024px) {
-        font-size: 32px;
+        font-size: 42px;
     }
 `;
 
