@@ -1,6 +1,6 @@
 import getChain from "../constants"
 
-const chain = getChain(parseInt("137"))
+const chain = getChain(parseInt("80001"))
 
 async function addTokenToMetamask(
   address: string,
