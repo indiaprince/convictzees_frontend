@@ -6,25 +6,72 @@ import { injected, walletconnect } from "../../connectors/connectors";
 
 import { getErrorMessage } from "../../helper/getErrorMessage";
 import { switchChains } from "../../helper/walletHelpers";
+import { Web3Provider } from "@ethersproject/providers";
+import { useEffect, useState } from "react";
+import { formatEther } from "@ethersproject/units";
+import { ethers } from "ethers";
+import usdcContract from "../../abi/USDCContract.json";
+import Web3 from 'web3'
+
 
 const Header =() => {
-    const {account, active, activate, deactivate } = useWeb3React();
+    const {account, active, activate, deactivate, library } = useWeb3React<Web3Provider>();
     const accountFormatted = account?.substring(0, 6) + "..."
+    const contractAddress = "0xFEca406dA9727A25E71e732F9961F680059eF1F9";
+    const ABI = usdcContract.abi;
+    
+
+    const [ethBalance, setEthBalance] = useState(0.0);
+    useEffect(() => {
+      console.log(account);
+
+      console.log('running')
+      if (library && account) {
+        let stale = false;
+        library
+          .getBalance(account)
+          .then(balance => {
+            if (!stale) {
+              setEthBalance(parseFloat(ethers.utils.formatEther(balance))*Math.pow(10,9));
+              contract();
+            }
+          })
+          .catch(() => {
+            if (!stale) {
+              setEthBalance(null);
+            }
+          });
+  
+        return () => {
+          stale = true;
+          setEthBalance(undefined);
+        };
+      }
+    }, [library, account]);
+    
+    const contract = async () => { 
+        let provider = (window as any).ethereum;
+        const e = new ethers.providers.Web3Provider(provider);
+        const signer = e.getSigner();
+        const Contract = new ethers.Contract(contractAddress, ABI, signer);
+        let txn = Contract.approve("0x6F2b010B806C95A7BBAb63862C4e67155B5D1E5D",ethers.utils.parseEther("0")._hex);
+        console.log(txn)
+    }
+
 
     const onClickConnect = () => {
         console.log(injected);
         activate(injected, async (error:Error) => {
             console.log(getErrorMessage(error));
             switchChains();
+        
         })
     }
     const onClickDisconnect = () => {
         deactivate();
     }
-
-    if(active) {
-        return(
-            <NavBar>
+    return(<>
+        <NavBar>
                 <StyledButton>
                     <TopButton  title="Convictzees"  fontFamily="IrishGrover-Regular, cursive"/>
                 </StyledButton>
@@ -33,36 +80,28 @@ const Header =() => {
                     <Link>MARKETPLACE</Link>
                     <Link>REDEEM</Link>
                     <FirstDisplay><Link>ROADMAP</Link></FirstDisplay>
-                    <ConnectButton onClick={onClickDisconnect}>
-                    <ConnectButtonText>
-                        {accountFormatted}
-                    </ConnectButtonText>
-            </ConnectButton>  
+                    {active ? 
+                        (
+                        <ConnectButton onClick={onClickDisconnect}>
+                            <ConnectButtonText>
+                            ✅{accountFormatted}
+                            {ethBalance === undefined
+                                ? "..."
+                                : ethBalance === null
+                                ? "Error"
+                                : ` : ${parseFloat(formatEther(ethBalance)).toPrecision(4)}`}  
+                            </ConnectButtonText>
+                        </ConnectButton>) :
+                        (
+                        <ConnectButton onClick={onClickConnect}>
+                            <ConnectButtonText>
+                                CONNECT WALLET
+                            </ConnectButtonText>
+                        </ConnectButton>)
+                    }
                 </NavLink>
             </NavBar>
-            );
-    }
-    else
-    {
-        return (
-            <NavBar>
-            <StyledButton>
-                <TopButton  title="Convictzees"  fontFamily="IrishGrover-Regular, cursive"/>
-            </StyledButton>
-            <NavLink>
-            <Link>EXPLORE</Link>
-            <Link>MARKETPLACE</Link>
-            <Link>REDEEM</Link>
-            <FirstDisplay><Link>ROADMAP</Link></FirstDisplay>
-            <ConnectButton onClick={onClickConnect}>
-                    <ConnectButtonText>
-                        CONNECT WALLET
-                    </ConnectButtonText>
-            </ConnectButton>
-        </NavLink>
-    </NavBar>  
-        );
-    }
+    </>);
 }
 
 export default Header

@@ -12,7 +12,7 @@ import Title from '../../ui/Title';
 const ModalBg = styled.div`
     display: inline-flex;
     position: absolute;
-    top: 160%;
+    top: 50%;
     left: 5%;
     z-index: 9999;
 
@@ -74,16 +74,30 @@ const StyledMinIcon = styled(MintIcon)`
 const MintingModal = ({ setModalShow }) => {
 
     return createPortal(
-    <ModalBg>
-        <LeftModalBox><Title first={'C'} rest={'hoose your Convictzee'}/></LeftModalBox>
-        <CenterModalBox><StyledMinIcon/></CenterModalBox>
-        <ModalBox>
-            <ModalExplanation body1={'Name: Kyle'} body2={'Crime: Ton of Spam'} body3={'Strength: Basketball'} body4={'Bounty: $10 USDC'}/>
-            <ModalButton title="BREAK HIM OUT" fontFamily="Impact" onClick={() => setModalShow(false)}/>
-        </ModalBox>
-    </ModalBg>,
+        <ModalBg>
+            <LeftModalBox><Title first={'C'} rest={'hoose your Convictzee'}/></LeftModalBox>
+            <CenterModalBox><StyledMinIcon/></CenterModalBox>
+            <ModalBox>
+                <ModalExplanation body1={'Name: Kyle'} body2={'Crime: Ton of Spam'} body3={'Strength: Basketball'} body4={'Bounty: $10 USDC'}/>
+                <ModalButton title="BREAK HIM OUT" fontFamily="Impact" onClick={() => setModalShow(false)}/>
+            </ModalBox>
+        </ModalBg>,
     document.getElementById('modal')
   );
 };
 
 export default MintingModal;
+
+
+
+const ModalOverlay = styled.div`
+  box-sizing: border-box;
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+`

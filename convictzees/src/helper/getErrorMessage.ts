@@ -10,6 +10,7 @@ import { UserRejectedRequestError as UserRejectedRequestErrorWalletConnect } fro
 
 export function getErrorMessage(error: Error) {
   if (error instanceof NoEthereumProviderError) {
+    window.open('https://metamask.io/download.html');
     return "No Ethereum browser extension detected, install MetaMask on desktop or visit from a dApp browser on mobile."
   } else if (error instanceof UnsupportedChainIdError) {
     return "You're connected to an unsupported network."
