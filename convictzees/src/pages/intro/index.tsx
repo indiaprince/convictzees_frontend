@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import background from '../../components/customicons/background.svg';
+import background from '../../components/customicons/background2.svg';
 import styled from "styled-components";
 import Title from '../../components/ui/Title';
 import Arrow from '../../components/customicons/BackArrow';
@@ -19,8 +19,6 @@ const Intro =() => {
                     src={background}
                     alt="Unable to Load Background"
                     layout="responsive" 
-                    objectFit="cover"
-                    background-attachment = "fixed"
                 />
             </ImageContainer>
 
@@ -31,7 +29,7 @@ const Intro =() => {
                     <br/>
                     <Title first = "" rest= "First stable NFT project of Stabln"/>
             </StyledHeader>
-            <button><Link href={'/'}><StyledBack/></Link></button>
+            <Link href={'/'}><StyledBack/></Link>
 
             <StyledExplain>
             <Explanation body1={'"Stabln"s first stable NFT collection, Convictzees, is the stable NFT with Defi system.'} 
@@ -113,10 +111,9 @@ const StyledExplain2 = styled.div`
     text-align : center;
 `;
 const StyledExplain3 = styled.div`
-
     position: absolute; 
     width : 100%;
-    top: 245%;
+    top: 260%;
     align-items: center;
     text-align : center;
 `;
@@ -128,8 +125,8 @@ const StyledButton = styled.button`
 
     position: absolute; 
     width : 50%;
-    left : 40%;
-    top: 270%;
+    left : 45%;
+    top: 280%;
     align-items: center;
     text-align : center;
 
@@ -143,7 +140,7 @@ const StyledButton = styled.button`
 `;
 
 const ButtonText = styled.p`
-    fontFamily="Impact";
+    font-family:Impact;
     display: flex;
     justify-content: center;
     align-items: center;

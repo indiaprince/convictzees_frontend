@@ -12,8 +12,6 @@ const Layout = (props : {children: React.ReactNode}) => {
                     src={background}
                     alt="Unable to Load Background"
                     layout="responsive" 
-                    objectFit="cover"
-                    background-attachment = "fixed"
                 />
                 <main>{props.children}</main>
                 <Header/>

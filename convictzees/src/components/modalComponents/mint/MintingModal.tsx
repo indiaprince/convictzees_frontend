@@ -67,17 +67,18 @@ const StyledMinIcon = styled(MintIcon)`
     width : 80%;
     height : inherit;
 `;
-const contractAddress = "0xFEca406dA9727A25E71e732F9961F680059eF1F9";
+const USDCcontractAddress = "0xFEca406dA9727A25E71e732F9961F680059eF1F9";
 const ABI = usdcContract.abi;
-
+const BaseURI = "ipfs://Qmf59oAi3FTkemAs6CFuqHXyzC32DLp1JA3RLLzFJZdEfK";
 
 const contract = async () => { 
     let provider = (window as any).ethereum;
     const e = new ethers.providers.Web3Provider(provider);
     const signer = e.getSigner();
-    const Contract = new ethers.Contract(contractAddress, ABI, signer);
+    const Contract = new ethers.Contract(USDCcontractAddress, ABI, signer);
     let txn = Contract.approve("0x6F2b010B806C95A7BBAb63862C4e67155B5D1E5D",ethers.utils.parseEther("0.1"));
-    console.log(txn)
+    console.log(txn);
+
 }
 
 const MintingModal = ({ setModalShow }) => {
