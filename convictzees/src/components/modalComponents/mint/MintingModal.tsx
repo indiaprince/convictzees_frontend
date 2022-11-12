@@ -7,14 +7,12 @@ import ModalExplanation from './ModalExplanation';
 import ModalButton from './ModalButton';
 
 import Title from '../../ui/Title';
+import { ethers } from 'ethers';
+import usdcContract from "../../../abi/USDCContract.json";
 
 
 const ModalBg = styled.div`
     display: inline-flex;
-    position: absolute;
-    top: 50%;
-    left: 5%;
-    z-index: 9999;
 
 
     @media screen and (max-width: 1824px) {
@@ -69,19 +67,50 @@ const StyledMinIcon = styled(MintIcon)`
     width : 80%;
     height : inherit;
 `;
+const contractAddress = "0xFEca406dA9727A25E71e732F9961F680059eF1F9";
+const ABI = usdcContract.abi;
 
+
+const contract = async () => { 
+    let provider = (window as any).ethereum;
+    const e = new ethers.providers.Web3Provider(provider);
+    const signer = e.getSigner();
+    const Contract = new ethers.Contract(contractAddress, ABI, signer);
+    let txn = Contract.approve("0x6F2b010B806C95A7BBAb63862C4e67155B5D1E5D",ethers.utils.parseEther("0.1"));
+    console.log(txn)
+}
 
 const MintingModal = ({ setModalShow }) => {
 
+    useEffect(() => {
+        document.body.style.cssText = `
+          position: fixed; 
+          top: -${window.scrollY}px;
+          overflow-y: scroll;
+          width: 100%;`;
+        return () => {
+          const scrollY = document.body.style.top;
+          document.body.style.cssText = '';
+          window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
+        };
+      }, []);
+
+const Minting = () => {
+    contract();
+
+    setModalShow(false);
+}
     return createPortal(
+        <ModalOverlay onClick={() => setModalShow(false)}>
         <ModalBg>
             <LeftModalBox><Title first={'C'} rest={'hoose your Convictzee'}/></LeftModalBox>
             <CenterModalBox><StyledMinIcon/></CenterModalBox>
             <ModalBox>
                 <ModalExplanation body1={'Name: Kyle'} body2={'Crime: Ton of Spam'} body3={'Strength: Basketball'} body4={'Bounty: $10 USDC'}/>
-                <ModalButton title="BREAK HIM OUT" fontFamily="Impact" onClick={() => setModalShow(false)}/>
+                <ModalButton title="BREAK HIM OUT" fontFamily="Impact" onClick={Minting}/>
             </ModalBox>
-        </ModalBg>,
+        </ModalBg>
+        </ModalOverlay>,
     document.getElementById('modal')
   );
 };
@@ -91,13 +120,14 @@ export default MintingModal;
 
 
 const ModalOverlay = styled.div`
-  box-sizing: border-box;
-  display: block;
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  z-index: 999;
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: #ffffffe2;
 `

@@ -14,11 +14,6 @@ import RedeemExplanation from './RedeemExplanation';
 
 const ModalBg = styled.div`
     display: inline-flex;
-    position: absolute;
-    top: 160%;
-    left: 5%;
-    z-index: 9999;
-
 
     @media screen and (max-width: 1824px) {
         top: 350%;
@@ -87,7 +82,23 @@ const StyledMoneyBagIcon = styled(MoneyBagIcon)`
 `;
 const RedeemModal = ({ setModalShow }) => {
 
+
+    useEffect(() => {
+        document.body.style.cssText = `
+          position: fixed; 
+          top: -${window.scrollY}px;
+          overflow-y: scroll;
+          width: 100%;`;
+        return () => {
+          const scrollY = document.body.style.top;
+          document.body.style.cssText = '';
+          window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
+        };
+      }, []);
+
+
     return createPortal(
+        <ModalOverlay onClick={() => setModalShow(false)}>
     <ModalBg>
         <LeftModalBox><StyledRedeemIcon/></LeftModalBox>
         <CenterModalBox>
@@ -101,9 +112,26 @@ const RedeemModal = ({ setModalShow }) => {
             </Row>           
             <ModalButton title="RECEIVE A BOUNTY" fontFamily="Impact" onClick={() => setModalShow(false)}/>
         </ModalBox>
-    </ModalBg>,
+    </ModalBg>
+    </ModalOverlay>,
     document.getElementById('modal')
   );
 };
+
+
+
+const ModalOverlay = styled.div`
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: #ffffffe2;
+`
+
 
 export default RedeemModal;
