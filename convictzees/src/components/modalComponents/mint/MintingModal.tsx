@@ -139,7 +139,6 @@ const Minting = async () => {
 export default MintingModal;
 
 
-
 const ModalOverlay = styled.div`
     display: flex;
     position: fixed;
