@@ -9,7 +9,6 @@ import Process from '../../components/customicons/Process';
 import NoRiskIcon from '../../components/customicons/NoRiskIcon';
 import YesProfitIcon from '../../components/customicons/YesProfitIcon';
 import YesNFTIcon from '../../components/customicons/YesNFTIcon';
-import Button from '../../components/ui/Button';
 const Intro =() => {
         return (
             <div>

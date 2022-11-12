@@ -11,6 +11,11 @@ import CycleIcon from '../../customicons/CycleIcon';
 import MoneyBagIcon from '../../customicons/MoneyBagIcon';
 import RedeemExplanation from './RedeemExplanation';
 
+import USDCContract from "../../../abi/USDCContract.json";
+import StablinContract from "../../../abi/StablinContract.json";
+import { ethers } from 'ethers';
+import { useWeb3React } from '@web3-react/core';
+import { Web3Provider } from '@ethersproject/providers';
 
 const ModalBg = styled.div`
     display: inline-flex;
@@ -78,10 +83,58 @@ const Row = styled.div`
 `;
 const StyledMoneyBagIcon = styled(MoneyBagIcon)`
     width:40%;
-
 `;
+
+
+const USDCcontractAddress = "0xFEca406dA9727A25E71e732F9961F680059eF1F9";
+const StablinContractAddress = "0x6F2b010B806C95A7BBAb63862C4e67155B5D1E5D";
+const USDCABI = USDCContract.abi;
+const StablinContractABI = StablinContract.abi;
+
+
+const Redeem = async (tokenId) => {
+    let provider = (window as any).ethereum;
+    const e = new ethers.providers.Web3Provider(provider);
+    const Redeemsigner = e.getSigner();
+    const Stablincontract = new ethers.Contract(StablinContractAddress, StablinContractABI, Redeemsigner);
+    let txn = await Stablincontract.redeem(tokenId);
+    console.log(`Redeem Loading - ${txn.hash}`)
+    await txn.wait()
+    console.log(`Redeem Success - ${txn.hash}`)
+
+
+}
+const RetreiveMyToken = async (account : string) =>{
+
+    let provider = (window as any).ethereum;
+    const e = new ethers.providers.Web3Provider(provider);
+    const Redeemsigner = e.getSigner();
+    const Stablincontract = new ethers.Contract(StablinContractAddress, StablinContractABI, Redeemsigner);
+
+    for(var i = 1 ; i<=100; i++){
+        try{
+            let txn2 = await Stablincontract.ownerOf(i);
+            if(txn2 == account){
+                console.log("You Have ", i, "TokenID");
+                return i;
+            }
+        }
+        catch (e) {
+            console.log(e);
+        }
+    }
+}
+
+
 const RedeemModal = ({ setModalShow }) => {
 
+    const {account, active} = useWeb3React<Web3Provider>();
+
+    const OnClickRedeem = async () => {
+        let tokenId = RetreiveMyToken(account)
+        Redeem(tokenId);
+        setModalShow(false);
+    }
 
     useEffect(() => {
         document.body.style.cssText = `
@@ -110,7 +163,7 @@ const RedeemModal = ({ setModalShow }) => {
                 <StyledMoneyBagIcon/>
                 <RedeemExplanation body1={'Bounty'} body2={'$10 USDC'}/>
             </Row>           
-            <ModalButton title="RECEIVE A BOUNTY" fontFamily="Impact" onClick={() => setModalShow(false)}/>
+            <ModalButton title="RECEIVE A BOUNTY" fontFamily="Impact" onClick={OnClickRedeem}/>
         </ModalBox>
     </ModalBg>
     </ModalOverlay>,

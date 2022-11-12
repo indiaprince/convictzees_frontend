@@ -1,3 +1,4 @@
+
 import { NextPage } from 'next'
 import Layout from '../components/layouts/Layout'
 import About from "../components/ui/About";
@@ -11,6 +12,7 @@ import Section2 from "../components/ui/Section2";
 
 
 const Home: NextPage = () => {
+
   return (
   <Layout>
     <Center/>

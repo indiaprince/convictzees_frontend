@@ -1,17 +1,25 @@
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useState } from "react";
 import styled from "styled-components";
 
 interface IButton {
     title : string;
     fontFamily : string;
+    link : string;
 }
 
 const TopButton =(props : IButton) => {
+    const router = useRouter();
+    const toggle = () => {
+        router.push(props.link);
+    }
     return (
-    <TopLogo>
-        <LogoText style ={{fontFamily:props.fontFamily}}>
-            {props.title}
-        </LogoText>
-    </TopLogo>        
+        <TopLogo onClick={toggle}>
+            <LogoText style ={{fontFamily:props.fontFamily}}>
+                {props.title}
+            </LogoText>
+        </TopLogo>   
     );
 }
 

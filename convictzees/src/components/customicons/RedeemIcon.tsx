@@ -1,7 +1,7 @@
 export default function RedeemIcon({ ...props }) {
   return (
     <svg { ...props } viewBox="0 0 392 414" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-<rect x="5" y="5" width="382" height="404" fill="url(#pattern0)" stroke="white" stroke-width="10"/>
+<rect x="5" y="5" width="382" height="404" fill="url(#pattern0)" stroke="white" strokeWidth="10"/>
 <defs>
 <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
 <use xlinkHref="#image0_173_37" transform="scale(0.000440141 0.000416752)"/>
