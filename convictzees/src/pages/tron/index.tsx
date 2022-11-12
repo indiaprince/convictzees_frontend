@@ -9,7 +9,7 @@ import Section2 from "../../components/ui/Section2";
 
 
 
-const TronHome = () => {
+const Tron = () => {
 
   return (
   <Layout>
@@ -23,4 +23,4 @@ const TronHome = () => {
   )
 }
 
-export default TronHome;
+export default Tron;
