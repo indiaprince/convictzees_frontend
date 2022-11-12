@@ -58,7 +58,6 @@ const Header =() => {
     
     return(<>
         <NavBar>
-            {
                 <StyledButton>
                     <TopButton  title="Convictzees"  fontFamily="IrishGrover-Regular, cursive"/>
                 </StyledButton>   
