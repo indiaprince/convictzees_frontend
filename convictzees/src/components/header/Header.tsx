@@ -8,10 +8,7 @@ import { getErrorMessage } from "../../helper/getErrorMessage";
 import { switchChains } from "../../helper/walletHelpers";
 import { Web3Provider } from "@ethersproject/providers";
 import { useEffect, useState } from "react";
-import { formatEther } from "@ethersproject/units";
 import { ethers } from "ethers";
-import usdcContract from "../../abi/USDCContract.json";
-import Web3 from 'web3'
 
 
 const Header =() => {
@@ -72,7 +69,7 @@ const Header =() => {
                         (
                         <ConnectButton onClick={onClickDisconnect}>
                             <ConnectButtonText>
-                            ✅{accountFormatted}
+                            {accountFormatted}
                             {ethBalance === undefined
                                 ? "..."
                                 : ethBalance === null

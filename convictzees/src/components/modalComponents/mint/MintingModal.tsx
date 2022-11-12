@@ -8,24 +8,29 @@ import ModalButton from './ModalButton';
 
 import Title from '../../ui/Title';
 import { ethers } from 'ethers';
-import usdcContract from "../../../abi/USDCContract.json";
-
+import USDCContract from "../../../abi/USDCContract.json";
+import StablinContract from "../../../abi/StablinContract.json";
 
 const ModalBg = styled.div`
     display: inline-flex;
-
-
     @media screen and (max-width: 1824px) {
         top: 270%;
+        height: 60%;
+
     }
     @media screen and (max-width: 1600px) {
         top: 230%;
+        height: 55%;
+
     }
     @media screen and (max-width: 1440px) {
         top: 210%;
+        height: 50%;
     }
     @media screen and (max-width: 1280px) {
         top: 170%;
+        height: 50%;
+
     }
     @media screen and (max-width: 1024px) {
         top: 150%;
@@ -39,7 +44,7 @@ const ModalBg = styled.div`
     justify-content: center;
     
     width: 90%;
-    height: 50%;
+    height: 60%;
 
     box-sizing: border-box;
     border: 10px solid #FF8A00;
@@ -68,21 +73,36 @@ const StyledMinIcon = styled(MintIcon)`
     height : inherit;
 `;
 const USDCcontractAddress = "0xFEca406dA9727A25E71e732F9961F680059eF1F9";
-const ABI = usdcContract.abi;
+const StablinContractAddress = "0x6F2b010B806C95A7BBAb63862C4e67155B5D1E5D";
+const USDCABI = USDCContract.abi;
+const StablinContractABI = StablinContract.abi;
+
+
 const BaseURI = "ipfs://Qmf59oAi3FTkemAs6CFuqHXyzC32DLp1JA3RLLzFJZdEfK";
 
 const contract = async () => { 
     let provider = (window as any).ethereum;
     const e = new ethers.providers.Web3Provider(provider);
     const signer = e.getSigner();
-    const Contract = new ethers.Contract(USDCcontractAddress, ABI, signer);
-    let txn = Contract.approve("0x6F2b010B806C95A7BBAb63862C4e67155B5D1E5D",ethers.utils.parseEther("0.1"));
+    const USDCcontract = new ethers.Contract(USDCcontractAddress, USDCABI, signer);
+    let txn = await USDCcontract.approve(StablinContractAddress, ethers.utils.parseEther("100.0"));
     console.log(txn);
+    await txn.wait()
+
+}
+
+const Mint = async () => {
+    let provider = (window as any).ethereum;
+    const e = new ethers.providers.Web3Provider(provider);
+    const signer = e.getSigner();
+    const Stablincontract = new ethers.Contract(StablinContractAddress, StablinContractABI);
+    let txn = await Stablincontract.mintWithTenUSD(USDCcontractAddress);
+    console.log(txn);
+    const txResult = await txn.wait()
 
 }
 
 const MintingModal = ({ setModalShow }) => {
-
     useEffect(() => {
         document.body.style.cssText = `
           position: fixed; 
@@ -96,9 +116,9 @@ const MintingModal = ({ setModalShow }) => {
         };
       }, []);
 
-const Minting = () => {
+const Minting = async () => {
     contract();
-
+    //Mint();
     setModalShow(false);
 }
     return createPortal(
