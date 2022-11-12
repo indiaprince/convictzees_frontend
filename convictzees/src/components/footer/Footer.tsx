@@ -12,7 +12,7 @@ const Footer =() => {
         <Section>
             <ButtonSection>
                 <StyledButton>
-                    <TopButton title={"Convictzees"} fontFamily={"IrishGrover-regular, cursive"} link="/"/>
+                    <TopButton title={"Convictzees"} fontFamily={"IrishGrover-regular, cursive"}/>
                 </StyledButton>
                 <Contacts>
                     <Facebook/>

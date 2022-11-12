@@ -4,16 +4,11 @@ import styled from "styled-components";
 interface IButton {
     title : string;
     fontFamily : string;
-    link : string;
 }
 
 const TopButton =(props : IButton) => {
-    const router = useRouter();
-    const toggle = () => {
-        router.push(props.link);
-    }
     return (
-        <TopLogo onClick={toggle}>
+        <TopLogo>
             <LogoText style ={{fontFamily:props.fontFamily}}>
                 {props.title}
             </LogoText>
