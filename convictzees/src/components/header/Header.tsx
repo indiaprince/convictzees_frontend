@@ -15,11 +15,7 @@ const Header =() => {
     const {account, active, activate, deactivate, library, chainId} = useWeb3React<Web3Provider>();
     const accountFormatted = account?.substring(0, 6) + "..."
 
-    const [ethBalance, setEthBalance] = useState(0.0);
-    const [isTron, setIsTron] = useState(false);
-
-
-    
+    const [ethBalance, setEthBalance] = useState(0.0);    
 
     useEffect(() => {
         console.log(chainId);
@@ -64,9 +60,9 @@ const Header =() => {
         <NavBar>
             {
                 <StyledButton>
-                    <TopButton  title="Convictzees"  fontFamily="IrishGrover-Regular, cursive" link = "/tron"/>
-                </StyledButton>
-            }    
+                    <TopButton  title="Convictzees"  fontFamily="IrishGrover-Regular, cursive"/>
+                </StyledButton>   
+
                 <NavLink>
                     <NavItem>EXPLORE</NavItem>
                     <NavItem>MARKETPLACE</NavItem>
