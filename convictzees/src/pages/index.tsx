@@ -19,7 +19,7 @@ const Home: NextPage = () => {
     <About/>
     <Diagram/>
     <Section1 isTron={false}/>
-    <Section2/>
+    <Section2 isTron={false}/>
     <RoadMap/>
   </Layout>
   )
