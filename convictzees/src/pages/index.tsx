@@ -18,8 +18,8 @@ const Home: NextPage = () => {
     <Center/>
     <About/>
     <Diagram/>
-    <Section1/>
-    <Section2/>
+    <Section1 isTron={false}/>
+    <Section2 isTron={false}/>
     <RoadMap/>
   </Layout>
   )

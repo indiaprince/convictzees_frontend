@@ -1,4 +1,4 @@
-import Layout from '../../components/layouts/Layout'
+import TronLayout from '../../components/layouts/TronLayout';
 import About from "../../components/ui/About";
 import Center from "../../components/ui/Center";
 import Diagram from "../../components/ui/Diagram";
@@ -12,14 +12,14 @@ import Section2 from "../../components/ui/Section2";
 const TronHome = () => {
 
   return (
-  <Layout>
+  <TronLayout>
     <Center/>
     <About/>
     <Diagram/>
-    <Section1/>
-    <Section2/>
+    <Section1 isTron={true}/>
+    <Section2 isTron={true}/>
     <RoadMap/>
-  </Layout>
+  </TronLayout>
   )
 }
 

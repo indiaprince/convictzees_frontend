@@ -95,7 +95,9 @@ const BaseURI = "ipfs://Qmf59oAi3FTkemAs6CFuqHXyzC32DLp1JA3RLLzFJZdEfK";
 
 
 
-const MintingModal = ({ setModalShow }) => {
+
+
+const TRXMintingModal = ({ setModalShow }) => {
 
     useEffect(() => {
         document.body.style.cssText = `
@@ -111,34 +113,37 @@ const MintingModal = ({ setModalShow }) => {
       }, []);
 
     
-const Mint = async () => {
-    let provider = (window as any).ethereum;
+const OnClickTRXMinting = async () => {
+    const tron =  (window as any).tronWeb;
+    let tronUSDTContract = await tron.contract().at(TronUSDTContractAddress);
+    console.log(`Approve Loading - ${tronUSDTContract}`)
 
-    const e = new ethers.providers.Web3Provider(provider);
-    const Approvesigner = e.getSigner();
-    const USDCcontract = new ethers.Contract(USDCcontractAddress, USDCABI, Approvesigner);
-    
     try {
-        let txn = await USDCcontract.approve(StablinContractAddress, (10 * Math.pow(10,6) + 10 *Math.pow(10,4)) );
-        console.log(`Approve Loading - ${txn.hash}`)
-        await txn.wait()
-        console.log(`Approve Success - ${txn.hash}`)
+        let res = await tronUSDTContract.approve(TronStablinContractAddress, (10 * Math.pow(10,6) + 10 *Math.pow(10,4))).send({
+            feeLimit:100_000_000,
+            callValue:0,
+            shouldPollResponse:true
+        });
+        console.log(res);
+        console.log(`Approve Success`);
+    } catch (error) {
+        console.log(error);
     }
-    catch (e) { console.log(e); }	
+
+    let tronStablinContract = await tron.contract().at(TronStablinContractAddress);
     
-    const Mintsigner = e.getSigner();
-    const Stablincontract = new ethers.Contract(StablinContractAddress, StablinContractABI,Mintsigner);
+    console.log(`Minting Loading`);
     try {
-        let txn = await Stablincontract.mintWithTenUSD(USDCcontractAddress);
-        console.log(`Minting Loading - ${txn.hash}`)
-        await txn.wait()
-        console.log(`Minting Success - ${txn.hash}`)
+        await tronStablinContract.mintWithTenUSD(TronUSDTContractAddress).send({
+            feeLimit: 100000000
+        }).then(output => {
+            console.log('- transferFrom hash:', output, '\n');
+        });
+        console.log(`Minting Success`);
+    } catch (error) {
+        console.log(error);
     }
-    catch (e) { console.log(e); }	
-    
-}
-const OnClickMinting = async () => {
-    Mint();
+
 }
     return createPortal(
         <ModalOverlay onClick={() => setModalShow(false)}>
@@ -146,9 +151,9 @@ const OnClickMinting = async () => {
             <LeftModalBox><Title first={'C'} rest={'hoose your Convictzee'}/></LeftModalBox>
             <CenterModalBox><StyledMinIcon/></CenterModalBox>
             <ModalBox>
-                <ModalExplanation body1={'Name: Kyle'} body2={'Crime: Ton of Spam'} body3={'Strength: Basketball'} body4={'Bounty: $10 USDC'}/>
+                <ModalExplanation body1={'Name: Kyle'} body2={'Crime: Ton of Spam'} body3={'Strength: Basketball'} body4={'Bounty: $10 USDT'}/>
                 {true ? (
-                <ModalButton title="BREAK HIM OUT" fontFamily="Impact" onClick={OnClickMinting}/>):
+                <ModalButton title="BREAK HIM OUT" fontFamily="Impact" onClick={OnClickTRXMinting}/>):
                 (
                 <ModalButton title="BREAKING" fontFamily="Impact" onClick={()=>{}}/>)
                 }
@@ -159,7 +164,7 @@ const OnClickMinting = async () => {
   );
 };
 
-export default MintingModal;
+export default TRXMintingModal;
 
 
 const ModalOverlay = styled.div`

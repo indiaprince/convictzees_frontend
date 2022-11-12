@@ -1,63 +1,47 @@
 import styled from "styled-components";
 import TopButton from "../ui/TopButton";
 
-import { useWeb3React } from "@web3-react/core";
-import { injected, walletconnect } from "../../connectors/connectors";
-
-import { getErrorMessage } from "../../helper/getErrorMessage";
-import { switchChains } from "../../helper/walletHelpers";
-import { Web3Provider } from "@ethersproject/providers";
-import { useEffect, useState } from "react";
-import { ethers } from "ethers";
+import { useState } from "react";
 
 
-const Header =() => {
-    const {account, active, activate, deactivate, library, chainId} = useWeb3React<Web3Provider>();
-    const accountFormatted = account?.substring(0, 6) + "..."
-    const [ethBalance, setEthBalance] = useState(0.0);    
+const TronHeader =() => {
+    const [tronAccountFormatted, setTronAccountFormatted]  = useState("");
+    const [Isactive, SetIsActive] = useState(false);
+    const [tronBalance, setTronBalance] = useState(0.0);    
 
-    useEffect(() => {
-        console.log(chainId);
-      if (library && account) {
-        let stale = false;
-        library
-          .getBalance(account)
-          .then(balance => {
-            console.log(ethers.utils.formatEther(balance));
-            if (!stale) {
-              setEthBalance(parseFloat(ethers.utils.formatEther(balance)));
-            }
-          })
-          .catch(() => {
-            if (!stale) {
-              setEthBalance(null);
-            }
-          });
-  
-        return () => {
-          stale = true;
-          setEthBalance(undefined);
-        };
-      }
-    }, [library, account, chainId]);
     
+
+    const getTronweb = async () =>{
+        const tron =  (window as any).tronWeb;
+        //if (!tron.loggedIn) {
+        //    tron.defaultAddress = {
+        //        hex: tron.address.toHex(MyTronAddress),
+        //        base58: MyTronAddress
+        //    };
+        //}
+        var obj = setInterval( async ()=>{
+                if (tron && tron.defaultAddress.base58) {
+                    clearInterval(obj)
+                    setTronAccountFormatted(tron.defaultAddress.base58.substring(0, 6) + "...");
+                }
+            }, 10);
+            
+        const userBalance = await tron.trx.getBalance(tron.defaultAddress.base58)/Math.pow(10,6);
+        setTronBalance(userBalance);
+    }
     
 
     const onClickConnect = () => {
-        console.log("Connecting" , injected);
-        activate(injected, async (error:Error) => {
-                switchChains();
-            })
+        console.log("Connecting");
+        getTronweb();
+        SetIsActive(true);
         console.log("Connected");
     }
 
+
     const onClickDisconnect = () => {
-        deactivate();
+        SetIsActive(false);
     }
-
-
-
-    
 
     
     return(<>
@@ -71,23 +55,23 @@ const Header =() => {
                     <NavItem>MARKETPLACE</NavItem>
                     <NavItem>REDEEM</NavItem>
                     <FirstDisplay><NavItem>ROADMAP</NavItem></FirstDisplay>
-                    {active ? 
+                    {Isactive ? 
                         (
                         <ConnectButton onClick={onClickDisconnect}>
                             <ConnectButtonText>
-                            {accountFormatted}
+                            {tronAccountFormatted}
                             {
-                            ethBalance === undefined
+                            tronBalance === undefined
                                 ? "..."
-                                : ethBalance === null
+                                : tronBalance === null
                                 ? "Error"
-                                : ` : ${ethBalance.toPrecision(4)}`
+                                : ` : ${tronBalance.toPrecision(4)} TRX`
                             }  
                             </ConnectButtonText>
                         </ConnectButton>
                         ):
                         (
-                        <ConnectButton onClick ={onClickConnect}>
+                        <ConnectButton onClick ={() => onClickConnect()}>
                             <ConnectButtonText>
                                 CONNECT WALLET
                             </ConnectButtonText>
@@ -100,7 +84,7 @@ const Header =() => {
     </>);
 }
 
-export default Header
+export default TronHeader;
 
 const FirstDisplay = styled.div`
     @media screen and (max-width: 1024px) {
@@ -145,7 +129,10 @@ const NavLink = styled.div`
     margin-left : 10.3%;
     width : 100%;
     @media screen and (max-width: 1024px) {
-        margin-left : 20%;
+        margin-left : 25%;
+    }
+    @media screen and (max-width: 1280px) {
+        margin-left : 15%;
     }
     
 `;
@@ -190,15 +177,15 @@ const ConnectButton = styled.button`
     border-color: #ff8a00;
     height : 60px;
     @media screen and (max-width: 1824px) {
-        width : 233px;
+        width : 263px;
         height: 55px;
     }
     @media screen and (max-width: 1600px) {
-        width : 190px;
+        width : 220px;
         height: 50px;
     }
     @media screen and (max-width: 1440px) {
-        width : 170px;
+        width : 200px;
         height: 45px;
     }
     @media screen and (max-width: 1280px) {

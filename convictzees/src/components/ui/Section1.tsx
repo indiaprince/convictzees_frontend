@@ -5,17 +5,20 @@ import Step1 from "../customicons/Step1";
 import Button from "./Button";
 import { useEffect, useState } from "react";
 import MintingModal from "../modalComponents/mint/MintingModal";
+import TRXMintingModal from "../modalComponents/mint/TRXMintingModal";
 
+interface proptype {
+    isTron : boolean;
+}
 
-
-
-const Section1 =() => {
+const Section1 = (props : proptype) => {
     const [isOpen, SetisOpen] = useState(false);
     const openModal = () => {
         SetisOpen(true);
     }
+    console.log(props.isTron);
     return (
-        <Section>``
+        <Section>
             <TextSection>
                 <Title first="P" rest="ick up your Convictzees"/>
                 <Explanation 
@@ -27,7 +30,11 @@ const Section1 =() => {
                 <StyledButton>
                     <Button title="MINT" fontFamily="Impact" onClick={openModal}></Button>
                 </StyledButton>
-                <div>{isOpen && <MintingModal setModalShow={SetisOpen}/>}</div>
+                {
+                    props.isTron ? 
+                    <div>{isOpen && <TRXMintingModal setModalShow={SetisOpen}/>}</div>:
+                    <div>{isOpen && <MintingModal setModalShow={SetisOpen}/>}</div>
+                }
                 </TextSection>
             <ImageSection/>
         </Section>
