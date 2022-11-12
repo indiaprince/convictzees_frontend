@@ -118,7 +118,7 @@ const MintingModal = ({ setModalShow }) => {
 
 const Minting = async () => {
     contract();
-    Mint();
+    //Mint();
     setModalShow(false);
 }
     return createPortal(
