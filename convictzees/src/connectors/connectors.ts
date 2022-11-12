@@ -2,8 +2,9 @@ import { InjectedConnector } from "@web3-react/injected-connector"
 import { WalletConnectConnector } from "@web3-react/walletconnect-connector"
 import getChain from "../constants"
 
-const chainID = 80001;
+const chainID = parseInt(process.env.NEXT_PUBLIC_CHAIN_ID)
 const chain = getChain(chainID)
+console.log(chainID)
 
 export const injected = new InjectedConnector({ supportedChainIds: [chainID] })
 

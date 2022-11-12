@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import TopButton from "../ui/TopButton";
 
-import { useWeb3React } from "@web3-react/core";
+import { UnsupportedChainIdError, useWeb3React } from "@web3-react/core";
 import { injected, walletconnect } from "../../connectors/connectors";
 
 import { getErrorMessage } from "../../helper/getErrorMessage";
@@ -12,14 +12,17 @@ import { ethers } from "ethers";
 
 
 const Header =() => {
-    const {account, active, activate, deactivate, library } = useWeb3React<Web3Provider>();
+    const {account, active, activate, deactivate, library, chainId} = useWeb3React<Web3Provider>();
     const accountFormatted = account?.substring(0, 6) + "..."
 
     const [ethBalance, setEthBalance] = useState(0.0);
-    useEffect(() => {
-      console.log(account);
+    const [isTron, setIsTron] = useState(false);
 
-      console.log('running')
+
+    
+
+    useEffect(() => {
+        console.log(chainId);
       if (library && account) {
         let stale = false;
         library
@@ -41,48 +44,57 @@ const Header =() => {
           setEthBalance(undefined);
         };
       }
-    }, [library, account]);
+    }, [library, account, chainId]);
     
 
 
     const onClickConnect = () => {
-        console.log(injected);
+        console.log("Connecting" , injected);
         activate(injected, async (error:Error) => {
-            console.log(getErrorMessage(error));
             switchChains();
         })
+        console.log("Connected");
     }
     const onClickDisconnect = () => {
         deactivate();
     }
+
+    
     return(<>
         <NavBar>
+            {
                 <StyledButton>
-                    <TopButton  title="Convictzees"  fontFamily="IrishGrover-Regular, cursive"/>
+                    <TopButton  title="Convictzees"  fontFamily="IrishGrover-Regular, cursive" link = "/tron"/>
                 </StyledButton>
+            }    
                 <NavLink>
-                    <Link>EXPLORE</Link>
-                    <Link>MARKETPLACE</Link>
-                    <Link>REDEEM</Link>
-                    <FirstDisplay><Link>ROADMAP</Link></FirstDisplay>
+                    <NavItem>EXPLORE</NavItem>
+                    <NavItem>MARKETPLACE</NavItem>
+                    <NavItem>REDEEM</NavItem>
+                    <FirstDisplay><NavItem>ROADMAP</NavItem></FirstDisplay>
                     {active ? 
                         (
                         <ConnectButton onClick={onClickDisconnect}>
                             <ConnectButtonText>
                             {accountFormatted}
-                            {ethBalance === undefined
+                            {
+                            ethBalance === undefined
                                 ? "..."
                                 : ethBalance === null
                                 ? "Error"
-                                : ` : ${ethBalance.toPrecision(4)}`}  
+                                : ` : ${ethBalance.toPrecision(4)}`
+                            }  
                             </ConnectButtonText>
-                        </ConnectButton>) :
+                        </ConnectButton>
+                        ):
                         (
-                        <ConnectButton onClick={onClickConnect}>
+                        <ConnectButton onClick ={() => onClickConnect()}>
                             <ConnectButtonText>
                                 CONNECT WALLET
                             </ConnectButtonText>
-                        </ConnectButton>)
+                        </ConnectButton>
+                        )
+
                     }
                 </NavLink>
             </NavBar>
@@ -115,7 +127,6 @@ const StyledButton = styled.div`
     @media screen and (max-width: 1024px) {
         width : 13%;
     }
-    
 `;
 
 const NavBar = styled.nav`
@@ -139,7 +150,7 @@ const NavLink = styled.div`
     }
     
 `;
-const Link = styled.p`
+const NavItem = styled.p`
     lex-grow: 0; 
     flex-shrink: 0; 
 

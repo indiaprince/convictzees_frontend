@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 import MintIcon from '../../customicons/MintIcon';
@@ -10,6 +10,10 @@ import Title from '../../ui/Title';
 import { ethers } from 'ethers';
 import USDCContract from "../../../abi/USDCContract.json";
 import StablinContract from "../../../abi/StablinContract.json";
+
+
+import USDTContract from "../../../abi/USDTContract.json";
+import TronStablinContract from "../../../abi/TronStablinContract.json";
 
 const ModalBg = styled.div`
     display: inline-flex;
@@ -72,37 +76,30 @@ const StyledMinIcon = styled(MintIcon)`
     width : 80%;
     height : inherit;
 `;
+
+// Polygon
 const USDCcontractAddress = "0xFEca406dA9727A25E71e732F9961F680059eF1F9";
 const StablinContractAddress = "0x6F2b010B806C95A7BBAb63862C4e67155B5D1E5D";
 const USDCABI = USDCContract.abi;
 const StablinContractABI = StablinContract.abi;
 
 
+// Tron
+
+const TronUSDTContractAddress = "TXLAQ63Xg1NAzckPwKHvzw7CSEmLMEqcdj";
+const TronStablinContractAddress = "TSKUFMwADjWgkANhyy8hwGF6EAwDnhCzwS";
+const TronUSDTABI = USDTContract.abi.entrys;
+const TronStablinContractABI = TronStablinContract.abi.entrys;
+
 const BaseURI = "ipfs://Qmf59oAi3FTkemAs6CFuqHXyzC32DLp1JA3RLLzFJZdEfK";
 
-const contract = async () => { 
-    let provider = (window as any).ethereum;
-    const e = new ethers.providers.Web3Provider(provider);
-    const signer = e.getSigner();
-    const USDCcontract = new ethers.Contract(USDCcontractAddress, USDCABI, signer);
-    let txn = await USDCcontract.approve(StablinContractAddress, ethers.utils.parseEther("100.0"));
-    console.log(txn);
-    await txn.wait()
 
-}
 
-const Mint = async () => {
-    let provider = (window as any).ethereum;
-    const e = new ethers.providers.Web3Provider(provider);
-    const signer = e.getSigner();
-    const Stablincontract = new ethers.Contract(StablinContractAddress, StablinContractABI);
-    let txn = await Stablincontract.mintWithTenUSD(USDCcontractAddress);
-    console.log(txn);
-    const txResult = await txn.wait()
 
-}
 
 const MintingModal = ({ setModalShow }) => {
+    const [loading, setLoading] = useState(false)
+
     useEffect(() => {
         document.body.style.cssText = `
           position: fixed; 
@@ -116,10 +113,35 @@ const MintingModal = ({ setModalShow }) => {
         };
       }, []);
 
-const Minting = async () => {
-    contract();
-    //Mint();
-    setModalShow(false);
+
+
+const Mint = async () => {
+    let provider = (window as any).ethereum;
+    const e = new ethers.providers.Web3Provider(provider);
+    const Approvesigner = e.getSigner();
+    const USDCcontract = new ethers.Contract(USDCcontractAddress, USDCABI, Approvesigner);
+    try {
+        let txn = await USDCcontract.approve(StablinContractAddress, (10 * Math.pow(10,6) + 10 *Math.pow(10,4)) );
+        console.log(`Approve Loading - ${txn.hash}`)
+        await txn.wait()
+        console.log(`Approve Success - ${txn.hash}`)
+    }
+    catch (e) { console.log(e); }	
+    
+    const Mintsigner = e.getSigner();
+    const Stablincontract = new ethers.Contract(StablinContractAddress, StablinContractABI,Mintsigner);
+    try {
+        let txn = await Stablincontract.mintWithTenUSD(USDCcontractAddress);
+        console.log(`Minting Loading - ${txn.hash}`)
+        await txn.wait()
+        console.log(`Minting Success - ${txn.hash}`)
+    }
+    catch (e) { console.log(e); }	
+    
+}
+const OnClickMinting = async () => {
+    setLoading(true)
+    Mint();
 }
     return createPortal(
         <ModalOverlay onClick={() => setModalShow(false)}>
@@ -128,7 +150,11 @@ const Minting = async () => {
             <CenterModalBox><StyledMinIcon/></CenterModalBox>
             <ModalBox>
                 <ModalExplanation body1={'Name: Kyle'} body2={'Crime: Ton of Spam'} body3={'Strength: Basketball'} body4={'Bounty: $10 USDC'}/>
-                <ModalButton title="BREAK HIM OUT" fontFamily="Impact" onClick={Minting}/>
+                {!loading ? (
+                <ModalButton title="BREAK HIM OUT" fontFamily="Impact" onClick={OnClickMinting}/>):
+                (
+                <ModalButton title="BREAKING" fontFamily="Impact" onClick={()=>{}}/>)
+                }
             </ModalBox>
         </ModalBg>
         </ModalOverlay>,

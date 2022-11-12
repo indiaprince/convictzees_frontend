@@ -1,6 +1,6 @@
 import getChain from "../constants"
 
-const chain = getChain(parseInt("80001"))
+const chain = getChain(parseInt(process.env.NEXT_PUBLIC_CHAIN_ID))
 
 async function addTokenToMetamask(
   address: string,
@@ -31,7 +31,7 @@ async function switchChains() {
     })
   } catch (error) {
     if ((error as any).code === 4902 || (error as any).code === -32603) {
-      await addChain()
+      await addChain();
     }
   }
 }
