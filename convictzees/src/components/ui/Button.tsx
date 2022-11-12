@@ -57,21 +57,21 @@ const TopLogo = styled.button`
     background: #ff8a00;
     padding : 0;
     margin:0;
-    width : 189px;
+    width : 249px;
     height : 79px;
 
 
     @media screen and (max-width: 1824px) {
-        width : 179px;
+        width : 229px;
         height : 74px;   
     }
     @media screen and (max-width: 1600px) {
-        width : 170px;
+        width : 200px;
         height : 70px; 
     }
     @media screen and (max-width: 1440px) {
 
-        width : 160px;
+        width : 180px;
         height : 65px; 
     }
     @media screen and (max-width: 1280px) {

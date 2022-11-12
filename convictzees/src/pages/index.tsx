@@ -8,6 +8,8 @@ import Section1 from "../components/ui/Section1";
 import Section2 from "../components/ui/Section2";
 
 
+
+
 const Home: NextPage = () => {
   return (
   <Layout>
