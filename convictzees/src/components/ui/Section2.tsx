@@ -5,16 +5,18 @@ import Step2 from "../customicons/Step2";
 import Button from "./Button";
 import RedeemModal from "../modalComponents/redeem/RedeemModal";
 import { useState } from "react";
+import TRXRedeemModal from "../modalComponents/redeem/TRXRedeemModal";
 
+interface Propstype {
+    isTron : boolean;
+}
 
-
-const Section2 =() => {
+const Section2 =(props : Propstype) => {
 
     const [isOpen, SetisOpen] = useState(false);
     const openModal = () => {
         SetisOpen(true);
     }
-    
     
     return (
         <Section>
@@ -31,8 +33,11 @@ const Section2 =() => {
                 <StyledButton>
                     <Button title="REDEEM" fontFamily="Impact" onClick={openModal}></Button>
                 </StyledButton>
-                <div>{isOpen && <RedeemModal setModalShow={SetisOpen}/>}</div>
-
+                {
+                    props.isTron ? 
+                    <div>{isOpen && <TRXRedeemModal setModalShow={SetisOpen}/>}</div> :
+                    <div>{isOpen && <RedeemModal setModalShow={SetisOpen}/>}</div>                
+                }
             </TextSection>
         </Section>
     );
