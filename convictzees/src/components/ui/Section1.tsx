@@ -19,10 +19,11 @@ const Section1 =() => {
             <TextSection>
                 <Title first="P" rest="ick up your Convictzees"/>
                 <Explanation 
-                    body1 = "Help your Convictzees to break out the prison"
-                    body2 = "And become the convict yourself!"
-                    body3 = "Your Convictzee will pay you a tribute every week"
-                    body4 = ""/>
+                    body1="Help your Convictzees to break out the prison"
+                    body2="And become the convict yourself!"
+                    body3="Your Convictzee will pay you a tribute every week"
+                    body4="" 
+                    body5={""}/>
                 <StyledButton>
                     <Button title="MINT" fontFamily="Impact" onClick={openModal}></Button>
                 </StyledButton>
@@ -59,9 +60,5 @@ const Section = styled.div`
     justify-content: center;
     align-items: center;
     padding-left:5%;
-
-
-
-
 `;
 

@@ -24,10 +24,10 @@ const Section2 =() => {
             <TextSection>
                 <Title first="T" rest="hrow your Convictzees Back in Jail"/>
                 <Explanation 
-                    body1 = "Feeling guilty?"
-                    body2 = "Then take your Convictzees back in jail"
-                    body3 = "And receive the bounty on his head!"
-                    body4 = ""/>
+                    body1="Feeling guilty?"
+                    body2="Then take your Convictzees back in jail"
+                    body3="And receive the bounty on his head!"
+                    body4="" body5={""}/>
                 <StyledButton>
                     <Button title="REDEEM" fontFamily="Impact" onClick={openModal}></Button>
                 </StyledButton>

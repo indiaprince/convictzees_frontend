@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styled from "styled-components";
 
 interface IButton {
@@ -7,12 +8,13 @@ interface IButton {
 
 const DiagramButton =(props : IButton) => {
     return (
-    <TopLogo>
-        <LogoText style ={{fontFamily:props.fontFamily}}>
-            {props.title}
-        </LogoText>
-    </TopLogo>        
+        <BorderButton>
+        <StyledLink href={'/intro'}>
+            <LogoText style ={{fontFamily:props.fontFamily}}>{props.title}</LogoText>
+        </StyledLink>
+        </BorderButton>
     );
+
 }
 
 export default DiagramButton;
@@ -49,21 +51,23 @@ const LogoText = styled.p`
     }
 
 `;
-const TopLogo = styled.button`
-    border-radius: 20px;
-    background: #ff8a00;
-    padding : 0;
-    margin:0;
-    width: 35%;
-    
-    &:hover {
-        cursor: pointer;
-        background-color: #fff;
-        border-width: 5px; 
-        border-color: #ff8a00;
-    }
-    
 
 
-    
+const StyledLink = styled(Link)`
 `;
+const BorderButton = styled.button`
+border-radius: 20px;
+background: #ff8a00;
+padding : 0;
+margin:0;
+width: 35%;
+
+&:hover {
+    cursor: pointer;
+    background-color: #fff;
+    border-width: 5px; 
+    border-color: #ff8a00;
+}
+`;
+
+    

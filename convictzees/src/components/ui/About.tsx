@@ -7,11 +7,10 @@ const About =() => {
         <AboutSection>
             <Title first="A" rest="bout Convictzees"/>
             <Explanation 
-            body1 = "Convictzees is the first stable NFT collection made by Stabln."
-            body2 = "Each convictzee is locked up for a terrible crime commited in the crypto world."
-            body3 = "From rug pulls to murder Satoshi Nakamoto!"
-            body4 = "Convictzees are waiting for your help to break out of prison."
-            />
+                body1="Convictzees is the first stable NFT collection made by Stabln."
+                body2="Each convictzee is locked up for a terrible crime commited in the crypto world."
+                body3="From rug pulls to murder Satoshi Nakamoto!"
+                body4="Convictzees are waiting for your help to break out of prison." body5={""}            />
         </AboutSection>
     );
 }

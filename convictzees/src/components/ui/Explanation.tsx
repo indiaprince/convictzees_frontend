@@ -7,6 +7,7 @@ interface IExplainBody {
     body2 : string;
     body3 : string;
     body4 : string;
+    body5 : string;
 
 }
 const Explanation =(props : IExplainBody) => {
@@ -19,6 +20,8 @@ const Explanation =(props : IExplainBody) => {
             <ExplanationSpan>{props.body3}</ExplanationSpan>
             <br/>
             <ExplanationSpan>{props.body4}</ExplanationSpan>
+            <br/>
+            <ExplanationSpan>{props.body5}</ExplanationSpan>
         </ExplanationP>
 
     );

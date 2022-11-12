@@ -17,9 +17,6 @@ import Web3 from 'web3'
 const Header =() => {
     const {account, active, activate, deactivate, library } = useWeb3React<Web3Provider>();
     const accountFormatted = account?.substring(0, 6) + "..."
-    const contractAddress = "0xFEca406dA9727A25E71e732F9961F680059eF1F9";
-    const ABI = usdcContract.abi;
-    
 
     const [ethBalance, setEthBalance] = useState(0.0);
     useEffect(() => {
@@ -31,9 +28,9 @@ const Header =() => {
         library
           .getBalance(account)
           .then(balance => {
+            console.log(ethers.utils.formatEther(balance));
             if (!stale) {
-              setEthBalance(parseFloat(ethers.utils.formatEther(balance))*Math.pow(10,9));
-              contract();
+              setEthBalance(parseFloat(ethers.utils.formatEther(balance)));
             }
           })
           .catch(() => {
@@ -49,14 +46,6 @@ const Header =() => {
       }
     }, [library, account]);
     
-    const contract = async () => { 
-        let provider = (window as any).ethereum;
-        const e = new ethers.providers.Web3Provider(provider);
-        const signer = e.getSigner();
-        const Contract = new ethers.Contract(contractAddress, ABI, signer);
-        let txn = Contract.approve("0x6F2b010B806C95A7BBAb63862C4e67155B5D1E5D",ethers.utils.parseEther("0")._hex);
-        console.log(txn)
-    }
 
 
     const onClickConnect = () => {
@@ -64,7 +53,6 @@ const Header =() => {
         activate(injected, async (error:Error) => {
             console.log(getErrorMessage(error));
             switchChains();
-        
         })
     }
     const onClickDisconnect = () => {
@@ -89,7 +77,7 @@ const Header =() => {
                                 ? "..."
                                 : ethBalance === null
                                 ? "Error"
-                                : ` : ${parseFloat(formatEther(ethBalance)).toPrecision(4)}`}  
+                                : ` : ${ethBalance.toPrecision(4)}`}  
                             </ConnectButtonText>
                         </ConnectButton>) :
                         (
