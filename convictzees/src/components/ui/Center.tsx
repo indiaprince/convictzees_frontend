@@ -6,19 +6,67 @@ const Center =() => {
         <div>
         <StyledCenter/>
         <CenterTitle>Convictzees</CenterTitle>
+        <CenterSubTitle>The World’s first Stable NFT</CenterSubTitle>
         </div>
     );
 }
 
 export default Center
 
+const CenterSubTitle = styled.p`
+    position : absolute;
 
+    width: 100%; 
+    height: 375px; 
+
+    font-family: 'Impact';    
+    text-align: center; 
+    font-style: normal;
+    font-weight: 400;
+    font-size: 35px;
+    line-height: 43px;
+
+    color: #000000;
+
+    -webkit-text-stroke: 2px #FF8A00;
+
+
+
+
+    top: 12.5%; 
+    left: 20%;
+    @media screen and (max-width: 1824px) {
+    }
+    @media screen and (max-width: 1600px) {
+        font-size: 34px;
+        top: 12.5%; 
+        left: 21%;
+    }
+    @media screen and (max-width: 1440px) {
+        font-size: 32px;
+        top: 13%; 
+        left: 24%;
+    }
+    @media screen and (max-width: 1280px) {
+        font-size: 28px;
+        top: 12%; 
+        left: 22%;
+    }
+    @media screen and (max-width: 1024px) {
+        font-size: 25px;
+        top: 11%; 
+        left: 19%;
+    }
+
+
+
+
+
+`;
 
 const StyledCenter = styled(CenterLogo)`
     position : absolute;
     top: 12%; 
-
-
 
     left : 53%;
     transform: translate(-50%, -50%);
@@ -31,10 +79,10 @@ const CenterTitle = styled.p`
     width: 100%; 
     height: 375px; 
 
-    font-family : IrishGrover-Regular, cursive;
+    font-family: 'Irish Grover';    
     text-align: center; 
     font-style: normal;
-    font-weight: 800;
+    font-weight: 400;
     font-size: 200px;
     line-height: 242px;
 

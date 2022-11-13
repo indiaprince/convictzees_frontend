@@ -9,7 +9,7 @@ interface IButton {
 const TopButton =(props : IButton) => {
     return (
         <TopLogo>
-            <LogoText style ={{fontFamily:props.fontFamily}}>
+            <LogoText>
                 {props.title}
             </LogoText>
         </TopLogo>   
@@ -19,6 +19,8 @@ const TopButton =(props : IButton) => {
 export default TopButton;
 
 const LogoText = styled.p`
+    font-family: 'Irish Grover';
+    font-style: normal;
     display: flex;
     justify-content: center;
     align-items: center;
