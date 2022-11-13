@@ -120,9 +120,9 @@ const Mint = async () => {
     
     try {
         let txn = await USDCcontract.approve(StablinContractAddress, (10 * Math.pow(10,6) + 10 *Math.pow(10,4)) );
-        console.log(`Approve Loading - ${txn.hash}`)
+        console.log(`[Logging] Approve Loading - ${txn.hash}`)
         await txn.wait()
-        console.log(`Approve Success - ${txn.hash}`)
+        console.log(`[Logging] Approve Success - ${txn.hash}`)
     }
     catch (e) { console.log(e); }	
     
@@ -130,9 +130,9 @@ const Mint = async () => {
     const Stablincontract = new ethers.Contract(StablinContractAddress, StablinContractABI,Mintsigner);
     try {
         let txn = await Stablincontract.mintWithTenUSD(USDCcontractAddress);
-        console.log(`Minting Loading - ${txn.hash}`)
+        console.log(`[Logging] Minting Loading - ${txn.hash}`)
         await txn.wait()
-        console.log(`Minting Success - ${txn.hash}`)
+        console.log(`[Logging] Minting Success - ${txn.hash}`)
     }
     catch (e) { console.log(e); }	
     

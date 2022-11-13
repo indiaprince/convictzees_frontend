@@ -9,7 +9,10 @@ import Process from '../../components/customicons/Process';
 import NoRiskIcon from '../../components/customicons/NoRiskIcon';
 import YesProfitIcon from '../../components/customicons/YesProfitIcon';
 import YesNFTIcon from '../../components/customicons/YesNFTIcon';
+import { useRouter } from 'next/router';
 const Intro =() => {
+        const router = useRouter()
+
         return (
             <div>
                 
@@ -28,7 +31,7 @@ const Intro =() => {
                     <br/>
                     <Title first = "" rest= "First stable NFT project of Stabln"/>
             </StyledHeader>
-            <Link href={'/'}><StyledBack/></Link>
+            <button  onClick={() => router.back()}><StyledBack/></button>
 
             <StyledExplain>
             <Explanation body1={'"Stabln"s first stable NFT collection, Convictzees, is the stable NFT with Defi system.'} 
@@ -56,7 +59,7 @@ const Intro =() => {
                         body5={''}
                         />
             </StyledExplain3>
-            <StyledButton><Link href={'/'}><ButtonText>Back</ButtonText></Link></StyledButton>
+            <StyledButton onClick={() => router.back()}><ButtonText>Back</ButtonText></StyledButton>
             </div>
     )
 

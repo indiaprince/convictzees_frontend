@@ -15,44 +15,48 @@ const Header =() => {
     const {account, active, activate, deactivate, library, chainId} = useWeb3React<Web3Provider>();
     const accountFormatted = account?.substring(0, 6) + "..."
     const [ethBalance, setEthBalance] = useState(0.0);    
-
+    const [connected, setConnected] = useState(false);
     useEffect(() => {
-        console.log(chainId);
-      if (library && account) {
-        let stale = false;
-        library
-          .getBalance(account)
-          .then(balance => {
-            console.log(ethers.utils.formatEther(balance));
-            if (!stale) {
-              setEthBalance(parseFloat(ethers.utils.formatEther(balance)));
-            }
-          })
-          .catch(() => {
-            if (!stale) {
-              setEthBalance(null);
-            }
-          });
-  
-        return () => {
-          stale = true;
-          setEthBalance(undefined);
-        };
-      }
-    }, [library, account, chainId]);
+        if(chainId==undefined && connected){
+            activate(injected);
+            setConnected(true);
+        }
+        if (library && account) {
+            let stale = false;
+            library.getBalance(account).then(balance => {
+                console.log(ethers.utils.formatEther(balance));
+                if (!stale) {
+                    setEthBalance(parseFloat(ethers.utils.formatEther(balance)));
+                }
+            })
+            .catch(() => {
+                if (!stale) {
+                    setEthBalance(null);
+                }
+            });
+    
+            return () => {
+                stale = true;
+                setEthBalance(undefined);
+            };
+        }
+    }, [library, account, chainId, connected]);
     
     
 
-    const onClickConnect = () => {
-        console.log("Connecting" , injected);
-        activate(injected, async (error:Error) => {
+    const onClickConnect = async () => {
+        console.log("[Logging]Connecting" , injected);
+        await activate(injected, async (error:Error) => {
                 switchChains();
             })
-        console.log("Connected");
+        console.log("[Logging]Connected");
+        setConnected(true);
     }
 
     const onClickDisconnect = () => {
         deactivate();
+        setConnected(false);
+
     }
 
 
@@ -67,6 +71,7 @@ const Header =() => {
                 </StyledButton>   
 
                 <NavLink>
+                    {connected}
                     <NavItem>EXPLORE</NavItem>
                     <NavItem>MARKETPLACE</NavItem>
                     <NavItem>REDEEM</NavItem>
@@ -87,7 +92,7 @@ const Header =() => {
                         </ConnectButton>
                         ):
                         (
-                        <ConnectButton onClick ={onClickConnect}>
+                        <ConnectButton onClick ={() => onClickConnect()}>
                             <ConnectButtonText>
                                 CONNECT WALLET
                             </ConnectButtonText>
