@@ -92,17 +92,23 @@ const TronStablinContractABI = TronStablinContract.abi.entrys;
 
 const RedeemModal = ({ setModalShow }) => {
 
-    const {account, active} = useWeb3React<Web3Provider>();
 
-    const OnClickTRXRedeem = async () => {
+    const RetreiveMyToken = async () =>{
 
 
+        const tron =  (window as any).tronWeb;
+        let account = tron.defaultAddress.base58;
+        let tronStablinContract = tron.contract().at(TronStablinContractAddress);      
+
+    }
+
+    const TRXRedeem = async (tokenId) => {
         const tron =  (window as any).tronWeb;
 
         let tronStablinContract = await tron.contract().at(TronStablinContractAddress);        
         console.log(`[Logging] Redeem Loading - ${tronStablinContract}`)
         try {
-            await tronStablinContract.redeem(1).send({
+            await tronStablinContract.redeem(3).send({
                 feeLimit: 100000000
             }).then(output => {
                 console.log('[Logging] transferFrom hash:', output, '\n');
@@ -111,6 +117,13 @@ const RedeemModal = ({ setModalShow }) => {
         } catch (error) {
             console.log(error);
         }
+    }
+
+    const OnClickTRXRedeem = async () => {
+        
+        let tokenId = await RetreiveMyToken()
+        TRXRedeem(tokenId);
+ 
         setModalShow(false);
     }
 
