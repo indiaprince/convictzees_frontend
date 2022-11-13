@@ -6,6 +6,7 @@ import Image from 'next/image'
 import background from '../customicons/background.svg';
   
 const Layout = (props : {children: React.ReactNode}) => {
+    console.log("[Logging] : Metamask");
     return (
             <ImageContainer>
                 <Image

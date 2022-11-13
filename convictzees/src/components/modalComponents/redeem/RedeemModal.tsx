@@ -98,9 +98,9 @@ const Redeem = async (tokenId) => {
     const Redeemsigner = e.getSigner();
     const Stablincontract = new ethers.Contract(StablinContractAddress, StablinContractABI, Redeemsigner);
     let txn = await Stablincontract.redeem(tokenId);
-    console.log(`Redeem Loading - ${txn.hash}`)
+    console.log(`[Logging] Redeem Loading - ${txn.hash}`)
     await txn.wait()
-    console.log(`Redeem Success - ${txn.hash}`)
+    console.log(`[Logging] Redeem Success - ${txn.hash}`)
 
 
 }
@@ -115,7 +115,7 @@ const RetreiveMyToken = async (account : string) =>{
         try{
             let txn2 = await Stablincontract.ownerOf(i);
             if(txn2 == account){
-                console.log("You Have ", i, "TokenID");
+                console.log("[Logging] You Have ", i, "TokenID");
                 return i;
             }
         }

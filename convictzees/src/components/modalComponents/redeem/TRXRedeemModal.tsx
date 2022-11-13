@@ -98,9 +98,9 @@ const Redeem = async (tokenId) => {
     const Redeemsigner = e.getSigner();
     const Stablincontract = new ethers.Contract(StablinContractAddress, StablinContractABI, Redeemsigner);
     let txn = await Stablincontract.redeem(tokenId);
-    console.log(`Redeem Loading - ${txn.hash}`)
+    console.log(`[Logging] Redeem Loading - ${txn.hash}`)
     await txn.wait()
-    console.log(`Redeem Success - ${txn.hash}`)
+    console.log(`[Logging] Redeem Success - ${txn.hash}`)
 
 
 }
@@ -161,7 +161,7 @@ const RedeemModal = ({ setModalShow }) => {
         <ModalBox>
             <Row>
                 <StyledMoneyBagIcon/>
-                <RedeemExplanation body1={'Bounty'} body2={'$10 USDC'}/>
+                <RedeemExplanation body1={'Bounty'} body2={'$10 USDT'}/>
             </Row>           
             <ModalButton title="RECEIVE A BOUNTY" fontFamily="Impact" onClick={OnClickTRXRedeem}/>
         </ModalBox>

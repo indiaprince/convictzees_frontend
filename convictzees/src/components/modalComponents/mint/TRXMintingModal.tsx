@@ -116,7 +116,7 @@ const TRXMintingModal = ({ setModalShow }) => {
 const OnClickTRXMinting = async () => {
     const tron =  (window as any).tronWeb;
     let tronUSDTContract = await tron.contract().at(TronUSDTContractAddress);
-    console.log(`Approve Loading - ${tronUSDTContract}`)
+    console.log(`[Logging] Approve Loading - ${tronUSDTContract}`)
 
     try {
         let res = await tronUSDTContract.approve(TronStablinContractAddress, (10 * Math.pow(10,6) + 10 *Math.pow(10,4))).send({
@@ -124,22 +124,21 @@ const OnClickTRXMinting = async () => {
             callValue:0,
             shouldPollResponse:true
         });
-        console.log(res);
-        console.log(`Approve Success`);
+        console.log(`[Logging] Approve Success`);
     } catch (error) {
         console.log(error);
     }
 
     let tronStablinContract = await tron.contract().at(TronStablinContractAddress);
     
-    console.log(`Minting Loading`);
+    console.log(`[Logging] Minting Loading`);
     try {
         await tronStablinContract.mintWithTenUSD(TronUSDTContractAddress).send({
             feeLimit: 100000000
         }).then(output => {
-            console.log('- transferFrom hash:', output, '\n');
+            console.log('[Logging] transferFrom hash:', output, '\n');
         });
-        console.log(`Minting Success`);
+        console.log(`[Logging] Minting Success`);
     } catch (error) {
         console.log(error);
     }
