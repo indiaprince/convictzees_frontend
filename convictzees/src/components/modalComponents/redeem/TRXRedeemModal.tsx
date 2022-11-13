@@ -11,9 +11,6 @@ import MoneyBagIcon from '../../customicons/MoneyBagIcon';
 import RedeemExplanation from './RedeemExplanation';
 
 import TronStablinContract from "../../../abi/TronStablinContract.json";
-import { ethers } from 'ethers';
-import { useWeb3React } from '@web3-react/core';
-import { Web3Provider } from '@ethersproject/providers';
 
 const ModalBg = styled.div`
     display: inline-flex;
@@ -98,8 +95,23 @@ const RedeemModal = ({ setModalShow }) => {
 
         const tron =  (window as any).tronWeb;
         let account = tron.defaultAddress.base58;
-        let tronStablinContract = tron.contract().at(TronStablinContractAddress);      
+        let tronStablinContract = await tron.contract().at(TronStablinContractAddress);      
 
+        for(var i = 1 ; i<=100; i++){
+            try{
+                let txn2 = await tronStablinContract.ownerOf(i).call();
+                let owner = tron.address.fromHex(txn2);
+
+                console.log("[Logging] Checking Token", i);
+                if(owner == account){
+                    console.log("[Logging] You Have ", i, "TokenID");
+                    return i;
+                }
+            }
+            catch (e) {
+                console.log(e);
+            }
+        }
     }
 
     const TRXRedeem = async (tokenId) => {
@@ -108,7 +120,7 @@ const RedeemModal = ({ setModalShow }) => {
         let tronStablinContract = await tron.contract().at(TronStablinContractAddress);        
         console.log(`[Logging] Redeem Loading - ${tronStablinContract}`)
         try {
-            await tronStablinContract.redeem(3).send({
+            await tronStablinContract.redeem(tokenId).send({
                 feeLimit: 100000000
             }).then(output => {
                 console.log('[Logging] transferFrom hash:', output, '\n');

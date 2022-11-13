@@ -7,10 +7,6 @@ import ModalExplanation from './ModalExplanation';
 import ModalButton from './ModalButton';
 
 import Title from '../../ui/Title';
-import { ethers } from 'ethers';
-import USDCContract from "../../../abi/USDCContract.json";
-import StablinContract from "../../../abi/StablinContract.json";
-
 
 import USDTContract from "../../../abi/USDTContract.json";
 import TronStablinContract from "../../../abi/TronStablinContract.json";
@@ -78,11 +74,6 @@ const StyledMinIcon = styled(MintIcon)`
 `;
 
 // Polygon
-const USDCcontractAddress = "0xFEca406dA9727A25E71e732F9961F680059eF1F9";
-const StablinContractAddress = "0x6F2b010B806C95A7BBAb63862C4e67155B5D1E5D";
-const USDCABI = USDCContract.abi;
-const StablinContractABI = StablinContract.abi;
-
 
 // Tron
 
