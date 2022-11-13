@@ -67,7 +67,7 @@ const Header =() => {
     return(<>
         <NavBar>
                 <StyledButton>
-                    <TopButton  title="Convictzees"  fontFamily="IrishGrover-Regular, cursive"/>
+                    <TopButton  title="Convictzees"  fontFamily="`Irish Grover`"/>
                 </StyledButton>   
 
                 <NavLink>
@@ -105,7 +105,7 @@ const Header =() => {
     </>);
 }
 
-export default Header
+export default Header;
 
 const FirstDisplay = styled.div`
     @media screen and (max-width: 1024px) {
