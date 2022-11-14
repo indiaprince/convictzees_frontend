@@ -104,7 +104,7 @@ const RedeemModal = ({ setModalShow }) => {
 
                 console.log("[Logging] Checking Token", i);
                 if(owner == account){
-                    console.log("[Logging] You Have ", i, "TokenID");
+                    console.log("[Logging]",account, "Have Token");
                     return i;
                 }
             }

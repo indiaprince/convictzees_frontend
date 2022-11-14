@@ -16,7 +16,7 @@ export default Center
 const CenterSubTitle = styled.p`
     position : absolute;
 
-    width: 100%; 
+    width: 30%; 
     height: 375px; 
 
     font-family: 'Impact';    
@@ -34,28 +34,28 @@ const CenterSubTitle = styled.p`
 
 
     top: 12.5%; 
-    left: 20%;
+    left: 50%;
     @media screen and (max-width: 1824px) {
     }
     @media screen and (max-width: 1600px) {
         font-size: 34px;
         top: 12.5%; 
-        left: 21%;
+        left: 55%;
     }
     @media screen and (max-width: 1440px) {
         font-size: 32px;
         top: 13%; 
-        left: 24%;
+        left: 60%;
     }
     @media screen and (max-width: 1280px) {
         font-size: 28px;
         top: 12%; 
-        left: 22%;
+        left: 55%;
     }
     @media screen and (max-width: 1024px) {
         font-size: 25px;
         top: 11%; 
-        left: 19%;
+        left: 50%;
     }
 
 

@@ -115,7 +115,7 @@ const RetreiveMyToken = async (account : string) =>{
         try{
             let txn2 = await Stablincontract.ownerOf(i);
             if(txn2 == account){
-                console.log("[Logging] You Have ", i, "TokenID");
+                console.log("[Logging]",account, "Have Token");
                 return i;
             }
         }
