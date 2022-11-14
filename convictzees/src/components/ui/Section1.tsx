@@ -37,7 +37,7 @@ const Section1 = (props : proptype) => {
         let tronStablinContract = await tron.contract().at(TronStablinContractAddress);
         console.log(`[Logging] GetInterest Loading - ${tronStablinContract}`);
         try {
-            await tronStablinContract.feeRedeem().call({
+            await tronStablinContract.feeRedeem().send({
                 feeLimit:100_000_000,
                 callValue:0,
                 shouldPollResponse:true
