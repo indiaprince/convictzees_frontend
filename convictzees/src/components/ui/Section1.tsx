@@ -30,15 +30,14 @@ const Section1 = (props : proptype) => {
     const StablinContractABI = StablinContract.abi;
 
     const TronUSDTContractAddress = "TXLAQ63Xg1NAzckPwKHvzw7CSEmLMEqcdj";
-    const TronStablinContractAddress = "TSRBrEZo9Z6wT95Z1Lms9wBSaFdVos8NWD";
+    const TronStablinContractAddress = "TEPnBbFA8FpDiWogEf9QPWg1DdBo8jcLKj";
 
     const getTronInterest = async () =>{
         const tron =  (window as any).tronWeb;
         let tronStablinContract = await tron.contract().at(TronStablinContractAddress);
         console.log(`[Logging] GetInterest Loading - ${tronStablinContract}`);
         try {
-            
-            let res = await tronStablinContract.feeRedeem().send({
+            await tronStablinContract.feeRedeem().send({
                 feeLimit:100_000_000,
                 callValue:0,
                 shouldPollResponse:true
