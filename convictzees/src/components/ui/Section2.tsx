@@ -38,6 +38,7 @@ const Section2 =(props : Propstype) => {
                     <div>{isOpen && <TRXRedeemModal setModalShow={SetisOpen}/>}</div> :
                     <div>{isOpen && <RedeemModal setModalShow={SetisOpen}/>}</div>                
                 }
+
             </TextSection>
         </Section>
     );
