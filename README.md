@@ -6,7 +6,7 @@
 
 
 
-## React + Typescript + Next + Tailwind + Vercel + BlockChain Network
+## React + Typescript + Next + Vercel + BlockChain Network
 
 
 ### yarn create-next-app --typescript new-project
